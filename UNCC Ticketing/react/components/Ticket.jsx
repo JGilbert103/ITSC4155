@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../css/ticket.css'
 
 function Ticket(){
     return(
@@ -21,7 +21,7 @@ function Ticket(){
 
             <label>Location:</label>
 
-        <li>
+        <li class="checkboxes">
 
             <label> Classroom:
                 <input type="checkbox" value="name"/>
