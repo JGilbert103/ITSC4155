@@ -1,0 +1,9 @@
+.checkboxes{
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    display: block;
+    text-align: center;
+    border: 2px solid black;
+    padding-bottom: 3px;
+}
