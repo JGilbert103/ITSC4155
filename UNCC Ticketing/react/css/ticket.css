@@ -1,3 +1,5 @@
+
+/**
 .checkboxes{
     align-items: center;
     justify-content: center;
@@ -7,3 +9,116 @@
     border: 2px solid black;
     padding-bottom: 3px;
 }
+ */
+
+
+
+.border{
+    display:flex;
+    justify-content: center;
+    left:120px;
+    top: 50px;
+   
+    
+}
+
+.form-border{
+    border: 1px solid black;
+    height: 70vh;
+    width: 120vh;
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    display:inline-block;
+    position:fixed;
+   
+}
+
+.first-last{
+   display:flex;
+   justify-content: space-between;
+   margin-right: 480px;
+}
+
+.first-last input{
+    width:70%;
+}
+
+.building-location{
+    display: flex;
+}
+
+.building-dropdown{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height:100px;
+    margin-top: 20px;
+    margin-right: 5%; 
+}
+
+.location-select{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10%;
+    height: 140px;
+    width: 200px;
+    padding: 5px;
+    align-items: flex-start;
+    font-size: 15px;
+    margin-top: 2%;
+    border: 1px solid black;
+}
+
+.add-photo{
+    display:flex;
+    flex-direction: column;
+    width: 30%;
+    margin-top: 1%;
+}
+
+.description{
+    display:flex;
+    flex-direction: column;
+    width: 50%;
+    height:90px;
+    margin-left: 50%;
+    margin-top: -36%;
+    
+}
+
+.description input{
+    width: 100%;
+    height: 100px;
+}
+
+.updates{
+    border: 2px solid black;
+    display:flex;
+    flex-direction: column;
+    margin-top:35%;
+    width: 20%;
+    height: 60px;
+    text-align:center;
+}
+
+button{
+    margin-left:90%;
+    margin-top: 3%;
+    background-color: rgb(159, 187, 159);
+    border:none;
+    padding: 15px;
+
+}
+
+
+
+
+
+
+    
+
+
+
+
+
