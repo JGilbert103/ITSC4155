@@ -43,18 +43,23 @@
 
 .building-location{
     display: flex;
-    flex-direction: column;
+    position: relative;
+    flex-direction: row;
+    margin-left: 10%;
     align-items: flex-end;
     width: auto;
+
 }
 
 .building-dropdown{
     display: flex;
+    position: relative;
     flex-direction: column;
     width: auto;
     height: auto;
     margin-top: 20px;
     margin-right: 5%; 
+
 }
 
 .location-type{
@@ -118,7 +123,8 @@ button{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
     font-weight: bold;
-    margin-left: 90%;
+    position: relative;
+    float:right;
     margin-top: 1%;
     background-color: rgb(159, 187, 159);
     border:none;
