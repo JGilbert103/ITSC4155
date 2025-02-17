@@ -3,7 +3,7 @@ import mysql from 'mysql2';
 var con = mysql.createConnection({
   host: "127.0.0.1",
   user: "root",
-  password: "",
+  password: "password",
   database: "tickets"
 }).promise()
 
