@@ -1,4 +1,5 @@
 Niner Maintenance is a web-based application designed to streamline maintenance request submissions and tracking for students, staff and technicians on UNCC campus.
+
 The system allows users to:
   Submit maintenance requests with details such as descriptions, photos and locations.
   Track the status of their requests (e.g., Open, In Progress, Resolved, Closed).
