@@ -21,9 +21,9 @@ Follow these steps to set up the development environment for Niner Maintenance:
 
   3. *Setup Backend*
      - Install dependencies
-       `npm install`
-     - Start server
        `cd UNCC Ticketing\react`
+       `npm install`
+     - Start server    
        `npm run dev`
      - Setup Database/Unit Testing
        `npm install mysql`
