@@ -13,6 +13,5 @@ INSERT INTO requests (username, issue, building, created)
 VALUES
 ('John Smith', 'Bathroom sink is broken', 'Cato'),
 ('Terry Johnson', 'Room outlet does not work', 'CHHS'),
-('Sarah Paulson', 'Printer out of ink', 'Fretwell')
-
+('Sarah Paulson', 'Printer out of ink', 'Fretwell');
 ;

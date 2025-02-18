@@ -20,4 +20,3 @@ async function getTickets(){
 
 const tickets = await getTickets()
 console.log(tickets)
-
