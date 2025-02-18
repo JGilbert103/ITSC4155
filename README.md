@@ -37,6 +37,7 @@ Follow these steps to set up the development environment for Niner Maintenance:
      - Attach a photo if necessary
   3. Track your ticket
      - View the status of your submitted ticket
+     
 **For Technicians/Admins**
   1. View assigned tickets:
      - Access the admin portal to see a list of assigned work orders
