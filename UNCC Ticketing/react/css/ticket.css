@@ -32,15 +32,18 @@
     background-color: rgb(221, 221, 221);
 }
 
-.first-last{
+.first-last-build{
    display:flex;
    justify-content:flex-start;
+   gap: 10px;
+
 }
 
-.first-last input{
+.first-last-build input{
     width:80%;
 }
 
+/*
 .building-location{
     display: flex;
     position: relative;
@@ -61,6 +64,7 @@
     margin-right: 5%; 
 
 }
+    */
 
 .location-type{
     display: flex;
@@ -132,7 +136,11 @@ button{
     border-radius: 10px;
 }
 
+select{
+    display:flex;
+    width: 100%;;
 
+}
 
 
 

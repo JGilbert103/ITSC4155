@@ -1,14 +1,23 @@
 import React from 'react';
 import '../css/ticket.css'
+import {useEffect, useState} from 'react';
 
 function Ticket() {
+    const [building, setBuilding] = useState([]) 
+
+    useEffect(() =>{
+        fetch("/buildings.txt")
+            .then(response => response.text())
+            .then(text => setBuilding(text.split("\n")))     
+    }, []);
+
+
     return (
         <>
             <div className="border">
                 <div className="form-border" >
                     <form>
-
-                        <div className="first-last">
+                        <div className="first-last-build">
                             <label>First Name:
                                 <br/>
                                 <input type="text" required />
@@ -17,59 +26,23 @@ function Ticket() {
                                 <br/>
                                 <input type="text" required />
                             </label>
-                        </div>
-
+                        
                         <div className="building-location">
                             <div className="building-dropdown">
                                 <label>Enter Building Name:</label>
-                                <select>
+                                <select> 
                                     <option>Choose one</option>
-                                    <option>Athletic Training & Academic Center</option>
-                                    <option>Atkins Library</option>
-                                    <option>Barnhardt Student Activity Center/Halton Arena</option>
-                                    <option>Bioinformatic Building</option>
-                                    <option>Barnard</option>
-                                    <option>Burson</option>
-                                    <option>Cameron Hall</option>
-                                    <option>College of Health & Human Services</option>
-                                    <option>Colvard</option>
-                                    <option>Bonnie E. Cone Center</option>
-                                    <option>Cypress Hall</option>
-                                    <option>Denny</option>
-                                    <option>Duke Centennial Hall</option>
-                                    <option>Energy Production & Infrastructure Center</option>
-                                    <option>Fretwell</option>
-                                    <option>Friday</option>
-                                    <option>Garinger</option>
-                                    <option>Grigg Hall</option>
-                                    <option>Belk Gymnasium</option>
-                                    <option>Hawthorn</option>
-                                    <option>Student Health Center</option>
-                                    <option>Johnson Band Center Building</option>
-                                    <option>Klien Hall</option>
-                                    <option>The building that shall not be named</option>
-                                    <option>Macy</option>
-                                    <option>McEniry</option>
-                                    <option>McMillan Greenhouse</option>
-                                    <option>Mebane Hall</option>
-                                    <option>Memorial Hall</option>
-                                    <option>Partnership Outreach Research to Accelerate Learning</option>
-                                    <option>University Recreation Center</option>
-                                    <option>Robinson Hall</option>
-                                    <option>Judy W. Rose Football Center</option>
-                                    <option>Rowe</option>
-                                    <option>Smith</option>
-                                    <option>Storrs</option>
-                                    <option>Student Union</option>
-                                    <option>University Recreation Center</option>
-                                    <option>Winningham</option>
-                                    <option>Witherspoon</option>
-                                    <option>Woodward Hall</option>
+                                    {building.map((name) =>(
+                                        <option value={name}>{name}</option>
+                                    ))}
                                 </select>
+                                  
                             </div>
                         </div>
+                        </div>
+                        
 
-                        <div class="location-type">
+                        <div className="location-type">
                             <label className="location-label">Location:</label> 
                             <div className="location-select">
                                 <label> Classroom:
