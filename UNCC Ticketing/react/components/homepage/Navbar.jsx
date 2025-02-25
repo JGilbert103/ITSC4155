@@ -21,10 +21,10 @@ function Navbar () {
             <div className="container">
                 <ul id="main-menu-1" className="menu-list">
                     <li className="menu-item">
-                        <a href="#about">About</a>
+                        <NavLink to="/about">About</NavLink>
                         </li>
                     <li className="menu-item">
-                    <a href="#faq">FAQ</a>
+                    <NavLink to="/faq">FAQ</NavLink>
                     </li>
                     <li className="menu-item">
                         <NavLink to="/ticket">Submit Ticket</NavLink>
