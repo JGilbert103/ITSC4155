@@ -92,26 +92,14 @@ p {
     unicode-bidi: isolate;
 }
 
-details > summary:first-of-type {
-    display: list-item;
-    counter-increment: list-item 0;
-    list-style: inside disclosure-closed;
+#main summary::marker,
+:is(::-webkit-details-marker) {
+  content: "+ ";
+  font-family: monospace;
+  color: red;
+  font-weight: bold;
 }
 
-#main .wp-block-details summary::before, #main .wp-block-details summary::after, .wp-block .wp-block-details summary::before, .wp-block .wp-block-details summary::after, .is-root-container .wp-block-details summary::before, .is-root-container .wp-block-details summary::after {
-    content: "";
-    width: 20px;
-    height: 0;
-    border-bottom: 2px solid;
-    position: absolute;
-    top: calc(50% - 1px);
-    right: 20px;
-    transform: translateY(-50%);
-    transition: 100ms;
-}
-
-#main .wp-block-details[open], .wp-block .wp-block-details[open], .is-root-container .wp-block-details[open] {
-    padding-right: 20px;
-    padding-bottom: 20px;
-}
-
+#main details[open] summary::marker {
+    content: "- ";
+  }
