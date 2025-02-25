@@ -12,7 +12,7 @@ function Navbar () {
                 <a></a>
                 <div className="site">
                     <h1 className="site-title">
-                        <a className="site-title-link" href="#home">Niner Maintenance</a>
+                        <NavLink to="/" className="site-title-link" >Niner Maintenance</NavLink>
                     </h1>
                 </div>
             </div>
@@ -27,10 +27,10 @@ function Navbar () {
                     <a href="#faq">FAQ</a>
                     </li>
                     <li className="menu-item">
-                    <a href="#submit-ticket">Submit Ticket</a>
+                        <NavLink to="/ticket">Submit Ticket</NavLink>
                     </li>
                     <li className="menu-item">
-                    <a href="#login">Login</a>
+                        <NavLink to="/login">Login</NavLink>
                     </li>
                 </ul>
             </div>

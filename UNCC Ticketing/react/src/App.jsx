@@ -5,6 +5,7 @@ import Ticket from '/components/Ticket.jsx'
 import Navbar from '../components/homepage/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../components/homepage/Home'
+import Login from '../components/Login'
 import './index.css'
 //import './App.css'
 
@@ -13,9 +14,12 @@ function App() {
 
   return (
     <>
-    {/*<Ticket/> */}
-    <Navbar/>
-    <Home /> 
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/ticket" element={<Ticket />} />
+      </Routes>
     </>
   )
 }
