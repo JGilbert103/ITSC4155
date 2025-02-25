@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom'
 import Home from '../components/homepage/Home'
 import Login from '../components/Login'
 import UserPortal from '../components/UserPortal'
+import AdminPortal from '../components/AdminPortal'
 import './index.css'
 import { FAQ } from '../components/FAQ'
 import { About } from '../components/About'
@@ -21,6 +22,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/adminportal" element={<AdminPortal />} />
         <Route path="/userportal" element={<UserPortal />} />
         <Route path="/login" element={<Login />} />
         <Route path="/ticket" element={<Ticket />} />
