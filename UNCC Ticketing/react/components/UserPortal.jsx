@@ -21,7 +21,7 @@ function UserPortal (){
                         <NavLink to="../components/UserTickets"><h1>View your tickets</h1></NavLink>
                     </li>
                     <li className='faqs'>
-                        <NavLink to="../components/FAQ"><h1>FAQs</h1></NavLink>
+                        <NavLink to="/faq"><h1>FAQs</h1></NavLink>
                     </li>
                 </ul>
             </div>

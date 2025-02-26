@@ -27,7 +27,7 @@ function Navbar () {
                     <NavLink to="/faq">FAQ</NavLink>
                     </li>
                     <li className="menu-item">
-                        <NavLink to="/ticket">Submit Ticket</NavLink>
+                        <NavLink to="/userportal">User Portal</NavLink>
                     </li>
                     <li className="menu-item">
                         <NavLink to="/login">Login</NavLink>

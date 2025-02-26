@@ -96,7 +96,7 @@ p {
 :is(::-webkit-details-marker) {
   content: "+ ";
   font-family: monospace;
-  color: red;
+  color: white;
   font-weight: bold;
 }
 

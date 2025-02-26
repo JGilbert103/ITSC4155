@@ -1,0 +1,63 @@
+*{
+    margin:0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+#main {
+    margin-bottom: 80px;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+section{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    display:block;
+    unicode-bidi: isolate;
+}
+
+@media (max-width: 1000px) {
+    #main .container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 1000px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+.container {
+    max-width: 1240px;
+    padding: 0 20px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.widget {
+    width: 100%;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.wp-block img, .is-root-container img, #main img {
+    border-radius: 0 !important;
+}
+
+element.style {
+    max-width: 100%;
+    height: auto;
+}
