@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
+import '../css/login.css';
 
 function Login() {
   // State to store user input
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simple validation (ensure fields aren't empty)
+    // Simple validation (ensure fields aren't empty, check that it is a @uncc.edu or @charlotte.edu email) 
     if (!email || !password) {
       setError('Please enter both email and password.');
       return;
     }
+
   };
 
   return (
