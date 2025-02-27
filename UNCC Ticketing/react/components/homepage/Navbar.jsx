@@ -30,7 +30,7 @@ function Navbar () {
                         <NavLink to="/userportal">User Portal</NavLink>
                     </li>
                     <li className="menu-item">
-                        <NavLink to="/login">Login</NavLink>
+                        <NavLink to="/adminportal">Admin Portal</NavLink>
                     </li>
                 </ul>
             </div>

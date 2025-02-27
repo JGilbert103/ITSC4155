@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../src/App'; 
 import '../css/login.css';
 
 function Login() {
@@ -6,18 +8,29 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const { setIsAuthenticated } = useAuth();
   
-
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Simple validation (ensure fields aren't empty, check that it is a @uncc.edu or @charlotte.edu email) 
+    
     if (!email || !password) {
       setError('Please enter both email and password.');
       return;
-    }
+    } /** else if (!email.endsWith('@uncc.edu') || !email.endsWith('@charlotte.edu')) {
+      setError('Access restricted to UNCC students and staff only.');
+      return;
+    } */
 
+    setIsAuthenticated(true);
+    localStorage.setItem('isAuthenticated', true);
+    localStorage.setItem('userEmail', email);
+
+    console.log("Login successful! Redirecting...");
+
+    navigate('/');
+    
   };
 
   return (
