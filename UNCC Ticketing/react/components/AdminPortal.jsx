@@ -1,29 +1,51 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
-import '../css/adminportal.css'
+import { NavLink } from 'react-router-dom';
+import '../css/adminportal.css';
 
-
-function AdminPortal (){
-    return(
-        <div>
+function AdminPortal() {
+    return (
+        <div className='admin-portal-container'>
             <div className='title'>
                 <h1>Welcome Home Niners</h1>
             </div>
-            <div className='select'>
-                <h2>Select an option</h2>
-            </div>
-            <div>
-                <ul className='options'>
-                    <li className='newtick'>
-                        <NavLink to="/ticketdatabase"><h1>View all tickets</h1></NavLink>
-                    </li>
-                    <li className='viewtick'>
-                        <NavLink to="../components/UserTickets"><h1>Something else</h1></NavLink>
-                    </li>
-                    <li className='faqs'>
-                        <NavLink to="../components/FAQ"><h1>I don't know. what else can an admin do?</h1></NavLink>
-                    </li>
-                </ul>
+            <div className='portal-content'>
+                <div className='left-panel'>
+                    <button className='view-all-tickets-btn'>View All Tickets</button>
+                    <button className='manage-users-btn'>Manage Users</button>
+                    <button className='settings-btn'>Admin Settings</button>
+                </div>
+                <div className='right-panel'>
+                    <table className='admin-tickets-table'>
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>User</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                                <th>Date Submitted</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12345</td>
+                                <td>John Doe</td>
+                                <td>Lightbulb Broken</td>
+                                <td>Open</td>
+                                <td>2024-10-31</td>
+                                <td><button className='view-btn'>View</button></td>
+                            </tr>
+                            <tr>
+                                <td>12346</td>
+                                <td>Jane Smith</td>
+                                <td>Chair missing</td>
+                                <td>Closed</td>
+                                <td>2024-10-30</td>
+                                <td><button className='view-btn'>View</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );

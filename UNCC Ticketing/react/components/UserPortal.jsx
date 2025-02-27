@@ -1,29 +1,48 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
-import '../css/userportal.css'
+import { NavLink } from 'react-router-dom';
+import '../css/userportal.css';
 
-
-function UserPortal (){
-    return(
-        <div>
+function UserPortal() {
+    return (
+        <div className='user-portal-container'>
             <div className='title'>
                 <h1>Welcome Home Niners</h1>
             </div>
-            <div className='select'>
-                <h2>Select an option</h2>
-            </div>
-            <div>
-                <ul className='options'>
-                    <li className='newtick'>
-                        <NavLink to="/ticket"><h1>Open a ticket</h1></NavLink>
-                    </li>
-                    <li className='viewtick'>
-                        <NavLink to="../components/UserTickets"><h1>View your tickets</h1></NavLink>
-                    </li>
-                    <li className='faqs'>
-                        <NavLink to="/faq"><h1>FAQs</h1></NavLink>
-                    </li>
-                </ul>
+            <div className='portal-content'>
+                <div className='left-panel'>
+                    <a className='open-ticket-btn'href="/ticket">
+                        <button className='open-ticket-btn' >Submit a New Ticket</button>
+                    </a>                        
+                    <a className='view-details-btn'href="/ticketdatabase">
+                        <button className='view-details-btn'>View Ticket Details</button>
+                    </a>  
+                </div>
+                <div className='right-panel'>
+                    <table className='tickets-table'>
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                                <th>Date Submitted</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12345</td>
+                                <td>Lightbulb Broken</td>
+                                <td>Open</td>
+                                <td>2024-10-31</td>
+                            </tr>
+                            <tr>
+                                <td>12346</td>
+                                <td>Chair missing</td>
+                                <td>Closed</td>
+                                <td>2024-10-30</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );
