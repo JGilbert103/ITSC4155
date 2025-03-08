@@ -4,15 +4,14 @@ import '../css/about.css'
 export const About = () => {
   return (
     <>
-    <section id="main">
-      <aside className="aside">
-        <div className="container">
-          <div className="widget widget">
-            <img className="image" width="600"src="../images/uncc.png"></img>
-          </div>
-        </div>
-      </aside>
+    <section>
+      <div className="pic">
+      <h2> About Us
+        <img src="../images/pic.png"></img>
+      </h2>
+      </div>
     </section>
+
     </>
   )
 }
