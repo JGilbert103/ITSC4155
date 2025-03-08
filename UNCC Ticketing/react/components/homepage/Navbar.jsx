@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import '../../css/navbar.css'
-import Hamburger from 'hamburger-react'
+import {Sling as Hamburger} from 'hamburger-react'
 import { useState, createContext, useContext } from 'react'
 
 function Navbar () {
