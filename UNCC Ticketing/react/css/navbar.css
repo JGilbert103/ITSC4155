@@ -20,6 +20,19 @@
     width: auto;
 }
 
+.navbarLogout
+{
+    background-color: #BC4A3C;
+}
+.navbarLogin
+{
+    background-color: #007377;
+}
+.navbarButtons
+{
+    margin-left: auto;
+}
+
 #niner {
     border-bottom: 3px solid #a49665;
     padding: 10px 0;
