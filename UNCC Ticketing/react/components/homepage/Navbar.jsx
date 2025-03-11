@@ -17,7 +17,10 @@ function Navbar () {
                 <a></a>
                 <div className="site">
                     <h1 className="site-title">
-                        <NavLink to="/" className="site-title-link" >Niner Maintenance</NavLink>
+                        <NavLink to="/" className="site-logo-link">
+                        <img src="../src/assets/sadnorm.svg" className="site-logo" alt="Logo" />
+                        </NavLink>
+                        <NavLink to="/" className="site-title-link">Niner Maintenance</NavLink>
                     </h1>
                 </div>
                 <Hamburger color="#FFFFFF" toggled={isOpen} toggle={setOpen} />

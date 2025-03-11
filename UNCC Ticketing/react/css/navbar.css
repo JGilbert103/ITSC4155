@@ -9,6 +9,17 @@
     z-index: 20;
 }
 
+.site-title {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+.site-logo {
+    height: 80px; 
+    width: auto;
+}
+
 #niner {
     border-bottom: 3px solid #a49665;
     padding: 10px 0;
