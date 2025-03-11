@@ -13,24 +13,6 @@ import { About } from '../components/About'
 
 const AuthContext = createContext();
 
-// const [isAuthenticated, setIsAuthenticated] = useState(() => {
-//   return localStorage.getItem('isAuthenticated') === 'true';
-// });
-
-// const isAuthenticated = useLocation();
-
-// const userLogged = JSON.parse(localStorage.getItem("isAuthenticated"));
-// return userLogged;
-// ? <Outlet />
-// : (
-//   <Navigate
-//   to="/"
-//   replace
-//   state={{ from: location }}
-//   />
-// );
-// }
-
 export function useAuth() {
   return useContext(AuthContext);
 }
