@@ -5,6 +5,7 @@ import '../../css/navbar.css'
 import {Sling as Hamburger} from 'hamburger-react'
 import { useState, createContext, useContext } from 'react'
 
+
 function Navbar () {
 
     const [isOpen, setOpen] = useState(false)

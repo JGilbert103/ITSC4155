@@ -53,8 +53,9 @@
 }
 
 #niner .site-title {
+    font-family: "Doto", sans-serif;
+    font-weight: 700;
     font-size: 2em;
-    font-weight: 500;
 }
 
 h1 {
