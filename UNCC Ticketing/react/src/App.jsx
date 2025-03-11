@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react'
+import { useState, useEffect, createContext, useContext } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Ticket from '/components/Ticket.jsx'
@@ -13,13 +13,41 @@ import { About } from '../components/About'
 
 const AuthContext = createContext();
 
+// const [isAuthenticated, setIsAuthenticated] = useState(() => {
+//   return localStorage.getItem('isAuthenticated') === 'true';
+// });
+
+// const isAuthenticated = useLocation();
+
+// const userLogged = JSON.parse(localStorage.getItem("isAuthenticated"));
+// return userLogged;
+// ? <Outlet />
+// : (
+//   <Navigate
+//   to="/"
+//   replace
+//   state={{ from: location }}
+//   />
+// );
+// }
+
 export function useAuth() {
   return useContext(AuthContext);
 }
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    JSON.parse(localStorage.getItem("isAuthenticated"))
+  );
+
+  useEffect(() => {
+    localStorage.setItem("isAuthenticated", JSON.stringify(isAuthenticated));
+  }, [isAuthenticated]);
+
+  const logIn = () => setIsAuthenticated(true);
+  const logOut = () => setIsAuthenticated(false);
+
+
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
