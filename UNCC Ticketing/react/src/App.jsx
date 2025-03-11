@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react'
+import { useState, useEffect, createContext, useContext } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Ticket from '/components/Ticket.jsx'
@@ -18,8 +18,18 @@ export function useAuth() {
 }
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    JSON.parse(localStorage.getItem("isAuthenticated"))
+  );
+
+  useEffect(() => {
+    localStorage.setItem("isAuthenticated", JSON.stringify(isAuthenticated));
+  }, [isAuthenticated]);
+
+  const logIn = () => setIsAuthenticated(true);
+  const logOut = () => setIsAuthenticated(false);
+
+
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>

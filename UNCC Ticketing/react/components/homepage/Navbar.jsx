@@ -3,12 +3,34 @@ import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import '../../css/navbar.css'
 import {Sling as Hamburger} from 'hamburger-react'
-import { useState, createContext, useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, createContext, useContext } from 'react'
+import { useAuth } from '../../src/App';
+
 
 
 function Navbar () {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const { setIsAuthenticated } = useAuth();
+  
+    const handleLogout = (e) => {
+        e.preventDefault();
+    
+    setIsAuthenticated(false);
+    localStorage.setItem('isAuthenticated', JSON.stringify(false));
+    localStorage.setItem('userEmail', '');
+
+    console.log("Logout successful! Redirecting...");
+
+    navigate('/');
+    
+  };
 
     const [isOpen, setOpen] = useState(false)
+    
 
   return (
     <>
@@ -22,6 +44,7 @@ function Navbar () {
                         <img src="../src/assets/sadnorm.svg" className="site-logo" alt="Logo" />
                         </NavLink>
                         <NavLink to="/" className="site-title-link">Niner Maintenance</NavLink>
+                        <button className="logout" onClick={handleLogout}>Logout</button>
                     </h1>
                 </div>
                 <Hamburger color="#FFFFFF" toggled={isOpen} toggle={setOpen} />

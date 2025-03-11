@@ -18,7 +18,7 @@ function Home (){
             </div>
         ) : (
             <div>
-                <a className='userPortalButton' href="/userportal">
+                <a className='userPortalButton' href="/UserPortal">
                 <button className='userPortal'>Go To User Portal</button>
                 </a>
             </div>
