@@ -1,10 +1,42 @@
-img{
-    width:1580px;
-    height: 500px;
-    object-fit:cover;
+.img-aboutus{
+    width:100%;
+    height:100%;
 }
 
+.image{
+    position: relative;
+    text-align: center;
+ 
+}
 
-.pic{
-    border-top: 3px solid #a49665;
+.us-title{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #005035;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+p.us-text{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-weight:bold;
+
+    
+}
+
+p.us-text2{
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #005035;
+    font-weight:bold;
+
+    
 }
