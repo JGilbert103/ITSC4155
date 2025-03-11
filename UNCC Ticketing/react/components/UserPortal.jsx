@@ -5,20 +5,20 @@ import '../css/userportal.css';
 function UserPortal() {
     return (
         <div className='user-portal-container'>
-            <div className='title'>
+            <div className='user-portal-title'>
                 <h1>Welcome Home Niners</h1>
             </div>
-            <div className='portal-content'>
-                <div className='left-panel'>
-                    <a className='open-ticket-btn'href="/ticket">
-                        <button className='open-ticket-btn' >Submit a New Ticket</button>
+            <div className='user-portal-content'>
+                <div className='user-portal-left-panel'>
+                    <a className='user-portal-open-ticket-btn'href="/ticket">
+                        <button className='user-portal-open-ticket-btn' >Submit a New Ticket</button>
                     </a>                        
-                    <a className='view-details-btn'href="/ticketdatabase">
-                        <button className='view-details-btn'>View Ticket Details</button>
+                    <a className='user-portal-view-details-btn'href="/ticketdatabase">
+                        <button className='user-portal-view-details-btn'>View Ticket Details</button>
                     </a>  
                 </div>
-                <div className='right-panel'>
-                    <table className='tickets-table'>
+                <div className='user-portal-right-panel'>
+                    <table className='user-portal-tickets-table'>
                         <thead>
                             <tr>
                                 <th>Ticket ID</th>
