@@ -7,10 +7,11 @@
   padding: 20px;
 }
 .title h1 {
-  color: #A49665;
   text-align: center;
+  margin-bottom: 2%;
+  color: #A49665;
   background-color: #005035;
-  padding: 1%;
+  padding: 2%;
   border-radius: 10px;
   width: 100%;
 }

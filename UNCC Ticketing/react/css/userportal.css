@@ -32,6 +32,7 @@
   padding: 2%;
   background-color: #A49665;
   border-radius: 10px;
+  align-items: center;
 }
 
 .user-portal-left-panel button {
