@@ -16,14 +16,17 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    
+    // validating that the email is a @charlotte or @uncc email
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@(charlotte|uncc)\.edu$/;
+    if (!emailRegex.test(email)) {
+      setError('Only those with a UNCC email are authorized to access this application.');
+      return;
+    }
+
     if (!email || !password) {
       setError('Please enter both email and password.');
       return;
-    } /** else if (!email.endsWith('@uncc.edu') || !email.endsWith('@charlotte.edu')) {
-      setError('Access restricted to UNCC students and staff only.');
-      return;
-    } */
+    } 
     if (email.startsWith('admin'))
     {
       setIsAdmin(true);
