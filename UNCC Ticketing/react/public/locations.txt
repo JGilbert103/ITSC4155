@@ -1,0 +1,6 @@
+Classroom:
+Bathroom:
+Main Building:
+Dorm:
+Study Arena:
+Other:

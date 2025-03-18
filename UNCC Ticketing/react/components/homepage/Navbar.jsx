@@ -10,6 +10,7 @@ import { useAuth } from '../../src/App';
 
 
 function Navbar () {
+    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -44,7 +45,18 @@ function Navbar () {
                         <img src="../src/assets/sadnorm.svg" className="site-logo" alt="Logo" />
                         </NavLink>
                         <NavLink to="/" className="site-title-link">Niner Maintenance</NavLink>
-                        <button className="logout" onClick={handleLogout}>Logout</button>
+                        {!isAuthenticated ? (
+                            <div className='navbarButtons'>
+                                <a href="/login">
+                                <button className='navbarLogin'>Login</button>
+                                </a>
+                            </div>
+                        ) : (
+                            <div className='navbarButtons'>
+                                <button className="navbarLogout" onClick={handleLogout}>Logout</button>
+                            </div>
+                        )}
+                        
                     </h1>
                 </div>
                 <Hamburger color="#FFFFFF" toggled={isOpen} toggle={setOpen} />

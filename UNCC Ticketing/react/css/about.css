@@ -5,8 +5,6 @@
 
 .image{
     position: relative;
-    text-align: center;
- 
 }
 
 .us-title{
@@ -36,7 +34,5 @@ p.us-text2{
     left: 50%;
     transform: translate(-50%, -50%);
     color: #005035;
-    font-weight:bold;
-
-    
+    font-weight:bold; 
 }
