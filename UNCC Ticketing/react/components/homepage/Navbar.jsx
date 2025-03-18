@@ -16,6 +16,7 @@ function Navbar () {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const { setIsAuthenticated } = useAuth();
+    const isAdmin = localStorage.getItem("isAdmin") === "true";
   
     const handleLogout = (e) => {
         e.preventDefault();
@@ -23,6 +24,7 @@ function Navbar () {
     setIsAuthenticated(false);
     localStorage.setItem('isAuthenticated', JSON.stringify(false));
     localStorage.setItem('userEmail', '');
+    localStorage.setItem('isAdmin' , JSON.stringify(false));
 
     console.log("Logout successful! Redirecting...");
 
@@ -74,9 +76,16 @@ function Navbar () {
                     <li className="nav-item">
                         <NavLink to="/userportal">User Portal</NavLink>
                     </li>
-                    <li className="nav-item">
+                    
+                    {isAdmin ? (
+                        <li className="nav-item">
                         <NavLink to="/adminportal">Admin Portal</NavLink>
-                    </li>
+                        </li>
+                    ) : (
+                        <div>
+                            
+                        </div>
+                    )}
                 </ul>
             </div>
         </nav>

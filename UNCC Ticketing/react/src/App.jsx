@@ -30,13 +30,25 @@ function App() {
   const logOut = () => setIsAuthenticated(false);
 
 
+  const [isAdmin, setIsAdmin] = useState(
+    JSON.parse(localStorage.getItem("isAdmin"))
+  );
+
+  useEffect(() => {
+    localStorage.setItem("isAdmin", JSON.stringify(isAdmin));
+  }, [isAdmin]);
+
+  const admin = () => setIsAdmin(true);
+  const notAdmin = () => setIsAdmin(false);
+
+
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmin }}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/adminportal" element={isAuthenticated ? <AdminPortal /> : <Navigate to="/login" />} />
+        <Route path="/adminportal" element={isAuthenticated && isAdmin ? <AdminPortal /> : <Navigate to="/login" />} />
         <Route path="/userportal" element={isAuthenticated ? <UserPortal /> : <Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/ticket" element={<Ticket />} />
