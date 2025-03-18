@@ -50,7 +50,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/adminportal" element={isAuthenticated && isAdmin ? <AdminPortal /> : <Navigate to="/login" />} />
         <Route path="/userportal" element={isAuthenticated ? <UserPortal /> : <Navigate to="/login" />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/" />} />
         <Route path="/ticket" element={<Ticket />} />
         <Route path="/faq" element={<FAQ/>}/>
         <Route path="/about" element={<About/>}/>
