@@ -10,6 +10,8 @@ function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { setIsAuthenticated } = useAuth();
+  const { setIsAdmin } = useAuth();
+
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,6 +24,10 @@ function Login() {
       setError('Access restricted to UNCC students and staff only.');
       return;
     } */
+    if (email.startsWith('admin'))
+    {
+      setIsAdmin(true);
+    }
 
     setIsAuthenticated(true);
     localStorage.setItem('isAuthenticated', true);

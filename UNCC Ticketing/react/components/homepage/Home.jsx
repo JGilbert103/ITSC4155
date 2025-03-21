@@ -6,10 +6,10 @@ function Home (){
 
     const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
     return(
-        <div>
+        <div className='homebody'>
             <div className='welcome'>
                 <h1>Welcome to Niner Maintenance</h1>
-                <h2>Your one-stop solution for maintenance requests and support.</h2>
+                <p>Your one-stop solution for maintenance requests and support.</p>
             </div>
             {!isAuthenticated ? (
                 <div className='buttons'>

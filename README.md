@@ -26,7 +26,7 @@ Follow these steps to set up the development environment for Niner Maintenance:
      - Start server    
        `npm run dev`
      - Setup Database/Unit Testing
-       `npm install mysql`
+       `npm install mysql` & `npm install mysql2`
        `npm install jest`
 
 ### Usage Details
@@ -57,5 +57,10 @@ Follow these steps to set up the development environment for Niner Maintenance:
   - Ticket submissions store into a database
   - Develop admin and student portal with a view of the tickets
 
-       
+**Sprint 2** - Feature Enhancements
+  - Implement access control for admins/users
+  - Define database schema and verify through testing
+  - Enhancements of About/Home/FAQ page
+  - Error prevention for ticket submissions and login page
+  - Further functionality implemented for Admin and User portal pages
 
