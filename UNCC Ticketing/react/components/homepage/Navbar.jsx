@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../../css/navbar.css'
 import {Sling as Hamburger} from 'hamburger-react'
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect, createContext, useContext } from 'react'
+import { useState, useEffect, createContext, useContext, useRef } from 'react'
 import { useAuth } from '../../src/App';
 
 
@@ -17,7 +17,9 @@ function Navbar () {
     const navigate = useNavigate();
     const { setIsAuthenticated } = useAuth();
     const isAdmin = localStorage.getItem("isAdmin") === "true";
-  
+    const [isOpen, setOpen] = useState(false);
+    const menuRef = useRef(null);
+
     const handleLogout = (e) => {
         e.preventDefault();
     
@@ -29,11 +31,33 @@ function Navbar () {
     console.log("Logout successful! Redirecting...");
 
     navigate('/');
+    setOpen(false);
     
   };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        !event.target.closest('.hamburger-react')
+      ) {
+        setOpen(false);
+      }
+    };
+  
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+  
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
-    const [isOpen, setOpen] = useState(false)
-    
+    const handleHamburgerClick = (e) => {
+        e.stopPropagation(); 
+        setOpen(prevState => !prevState); 
+    };
 
   return (
     <>
@@ -61,25 +85,26 @@ function Navbar () {
                         
                     </h1>
                 </div>
-                <Hamburger color="#FFFFFF" toggled={isOpen} toggle={setOpen} />
+                <div>
+                    <Hamburger toggled={isOpen} toggle={() => setOpen(!isOpen)} color="#FFFFFF" />
+                </div>
             </div>
         </section>
-        <nav className={isOpen ? "burger-menu show-menu" : "burger-menu"} id="nav-menu" >
+        <nav ref={menuRef} className={isOpen ? "burger-menu show-menu" : "burger-menu"} id="nav-menu" >
             <div className="container">
                 <ul id="nav-menu-1" className="nav-list">
                     <li className="nav-item">
-                        <NavLink to="/about">About</NavLink>
+                        <NavLink to="/about" onClick={() => setOpen(false)}>About</NavLink>
                         </li>
                     <li className="nav-item">
-                    <NavLink to="/faq">FAQ</NavLink>
+                    <NavLink to="/faq" onClick={() => setOpen(false)}>FAQ</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink to="/userportal">User Portal</NavLink>
+                        <NavLink to="/userportal" onClick={() => setOpen(false)}>User Portal</NavLink>
                     </li>
-                    
                     {isAdmin ? (
                         <li className="nav-item">
-                        <NavLink to="/adminportal">Admin Portal</NavLink>
+                        <NavLink to="/adminportal" onClick={() => setOpen(false)}>Admin Portal</NavLink>
                         </li>
                     ) : (
                         <div>
