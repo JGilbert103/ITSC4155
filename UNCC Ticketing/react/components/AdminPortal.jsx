@@ -19,8 +19,9 @@ function AdminPortal() {
                         <thead>
                             <tr>
                                 <th>Ticket ID</th>
-                                <th>User</th>
-                                <th>Subject</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Problem</th>
                                 <th>Status</th>
                                 <th>Date Submitted</th>
                                 <th>Actions</th>
@@ -28,20 +29,10 @@ function AdminPortal() {
                         </thead>
                         <tbody>
                             <tr>
-                                <td>12345</td>
-                                <td>John Doe</td>
-                                <td>Lightbulb Broken</td>
-                                <td>Open</td>
-                                <td>2024-10-31</td>
-                                <td><button className='view-btn'>View</button></td>
+                                
                             </tr>
                             <tr>
-                                <td>12346</td>
-                                <td>Jane Smith</td>
-                                <td>Chair missing</td>
-                                <td>Closed</td>
-                                <td>2024-10-30</td>
-                                <td><button className='view-btn'>View</button></td>
+                                
                             </tr>
                         </tbody>
                     </table>

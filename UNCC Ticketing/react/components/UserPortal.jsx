@@ -3,6 +3,42 @@ import { NavLink } from 'react-router-dom';
 import '../css/userportal.css';
 
 function UserPortal() {
+
+    //POTENTIAL LOGIC FOR ADDING TICKETS TO TABLE FROM DB
+    
+     /** const [tickets, setTickets] = useState([]);
+    const [newTicket, setNewTicket] = useState({
+        firstname: '',
+        lastname: '',
+        problem: '',
+        building: '',
+        location: '',
+        updates: ''
+    });
+
+    useEffect(() => {
+        axios.get('/tickets')
+            .then(response => {
+                setTickets(response.data);
+            })
+            .catch.error(error => {
+                console.log(error);
+            });
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        axios.post('/tickets', newTicket)
+            .then(response => {
+            console.log(response.data);
+            setTickets([...tickets, response.data]);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }; */
+
     return (
         <div className='user-portal-container'>
             <div className='user-portal-title'>
@@ -21,25 +57,16 @@ function UserPortal() {
                     <table className='user-portal-tickets-table'>
                         <thead>
                             <tr>
-                                <th>Ticket ID</th>
-                                <th>Subject</th>
-                                <th>Status</th>
-                                <th>Date Submitted</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Problem</th>
+                                <th>Building</th>
+                                <th>Location</th>
+                                <th>Updates</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>12345</td>
-                                <td>Lightbulb Broken</td>
-                                <td>Open</td>
-                                <td>2024-10-31</td>
-                            </tr>
-                            <tr>
-                                <td>12346</td>
-                                <td>Chair missing</td>
-                                <td>Closed</td>
-                                <td>2024-10-30</td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>
