@@ -27,7 +27,7 @@ function Login() {
       setError('Please enter both email and password.');
       return;
     } 
-    if (email.startsWith('admin'))
+    if (email.toUpperCase().startsWith('ADMIN'))
     {
       setIsAdmin(true);
     }
