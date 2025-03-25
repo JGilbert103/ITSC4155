@@ -1,5 +1,5 @@
 import express from "express";
-import mysql from "mysql";
+import mysql from "mysql2";
 import cors from "cors";
 import bodyParser from "body-parser";
 
@@ -35,7 +35,7 @@ app.post('/tickets', (req, res)=>{
     const building = req.body.building;
     const location = req.body.location;
     const updates = req.body.updates;
-    //const photo = req.body.photo;
+    const photo = req.body.photo;
     console.log(req.body)
 
     db.query("INSERT INTO tickets (firstname, lastname, problem, building, location, updates) VALUES (?, ?, ?, ?, ?, ?)", [firstname, lastname, problem, building, location, updates], (err, result) =>{
