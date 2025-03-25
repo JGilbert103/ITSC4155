@@ -5,11 +5,11 @@ CREATE TABLE tickets(
     id integer PRIMARY KEY AUTO_INCREMENT,
     firstname TEXT NOT NULL,
     lastname TEXT NOT NULL,
-    issue TEXT NOT NULL,
+    problem TEXT NOT NULL,
     building TEXT NOT NULL,
-    userlocation TEXT NOT NULL,
+    location TEXT NOT NULL,
     updates BOOLEAN,
-    photo TEXT NOT NULL,
+    photo TEXT NULL,
     created TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
