@@ -59,7 +59,7 @@ export const About = () => {
               <div className="id-card">
                 <div className="id-header">
                 <img src={CharlotteLogo} alt="Charlotte Logo" className="logo" />
-                <img src={MicoHeadshot} alt="Mico Headshot" classname="mHeadshot" />
+                <img src={MicoHeadshot} alt="Mico Headshot" className="mHeadshot" />
                 </div>
                 <div className="gold-divider"></div>
                 <div className="id-body">
