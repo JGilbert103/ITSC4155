@@ -41,12 +41,12 @@
 }
 
 .ticketHeader {
-  background-color: lightgray;
+  background-color: rgb(255, 255, 255);
   font-weight: bold;
 }
 
 .listedTickets tr:nth-child(odd) {
-  background-color: #f0f0f0;
+  background-color: lightgray;
 }
 
 .viewButton {
