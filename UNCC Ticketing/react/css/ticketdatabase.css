@@ -1,0 +1,64 @@
+.fullPage {
+  display: flex;
+  height: 100vh; 
+}
+
+.leftPanel {
+  width: 20%; /* Adjust size as needed */
+  background-color: #f4f4f4;
+  height: 100vh;
+  flex-shrink: 0; /* Prevent shrinking */
+  padding: 20px; /* Add padding inside */
+  box-sizing: border-box;
+}
+
+.rightPanel {
+  flex-grow: 1; /* Take up remaining space */
+  margin: 20px;
+  background-color: #ffffff;
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Table Styling */
+.allTickets {
+  width: 100%;
+  border: 1px solid lightgrey;
+  background-color: #fafafa;
+  padding: 10px;
+}
+
+.allTickets table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.allTickets th, .allTickets td {
+  border: 1px solid grey;
+  padding: 10px;
+  text-align: left;
+}
+
+.ticketHeader {
+  background-color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+.listedTickets tr:nth-child(odd) {
+  background-color: lightgray;
+}
+
+.viewButton {
+  background: none;
+  color: black;
+  padding: 5px;
+  font-weight: 900;
+  font-family: 'Courier New', Courier, monospace;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.viewButton:hover {
+  background-color: lightgray;
+}

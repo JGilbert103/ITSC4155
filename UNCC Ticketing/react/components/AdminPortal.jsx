@@ -10,9 +10,15 @@ function AdminPortal() {
             </div>
             <div className='portal-content'>
                 <div className='left-panel'>
-                    <button className='view-all-tickets-btn'>View All Tickets</button>
-                    <button className='manage-users-btn'>Manage Users</button>
-                    <button className='settings-btn'>Admin Settings</button>
+                    <a href='ticket-database'>
+                        <button className='view-all-tickets-btn'>View All Tickets</button>
+                    </a>
+                    <a href='manage-users'>
+                        <button className='manage-users-btn'>Manage Users</button>
+                    </a>
+                    <a href='admin-settings'>
+                        <button className='settings-btn'>Admin Settings</button>
+                    </a>
                 </div>
                 <div className='right-panel'>
                     <table className='admin-tickets-table'>

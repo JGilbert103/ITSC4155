@@ -1,38 +1,137 @@
-.img-aboutus{
-    width:100%;
-    height:100%;
+.image {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.image{
-    position: relative;
+.img-aboutus {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.us-title{
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #005035;
-    text-transform: uppercase;
-    font-weight: bold;
+.us-title {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #005035;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 3rem;
+  z-index: 15;
 }
 
-p.us-text{
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: black;
-    font-weight:bold;
-
-    
+.id-card {
+  width: 500px;
+  height: 320px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 0;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-p.us-text2{
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #005035;
-    font-weight:bold; 
+.id-header {
+  background-color: #005035;
+  color: white;
+  padding: 0 10px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: .75;
+  overflow: hidden;
+}
+
+.id-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  position: absolute;
+}
+
+.gold-divider {
+  height: 12px;
+  background-color: #A49665;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.id-body {
+  padding: 12px 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.id-year {
+  font-weight: bold;
+  font-size: 16px;
+  color: #005035;
+  margin-bottom: 10px;
+}
+
+.id-label {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.id-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  width: auto;
+  max-width: none;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 500px);
+  gap: 3rem 12rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.id-header {
+  background-color: #004d40;
+  color: white;
+  padding: 1.5rem;
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.logo {
+  height: 325px;
+  margin-bottom: 0.5rem;
+  position: absolute;
+  left: 25px;
+}
+
+.mHeadshot {
+  height: 30px;
+  width: 30px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-left: auto;
 }
