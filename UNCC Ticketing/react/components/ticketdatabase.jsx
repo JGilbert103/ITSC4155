@@ -16,15 +16,42 @@ function TicketDatabase() {
             </div>
             <div className='rightPanel'>
                 <div className='allTickets'>
-                    <ul>
-                        <li className='ticketHeader'>Name: Building: Location:</li>
-                        <ul className='listedTickets'>
-                            <li>Gilbert, Jake Fretwell Bathroom <a href=''><button className='viewButton'>view</button></a></li>
-                            <li>Shugarman, Tess Colvard Hallway <a href=''><button className='viewButton'>view</button></a></li>
-                            <li>Masangkay, Mico Denny Classroom <a href=''><button className='viewButton'>view</button></a></li>
-                            <li>Freeman, Danielle Prospector Bathroom <a href=''><button className='viewButton'>view</button></a></li>
-                        </ul>
-                    </ul>
+                    <table>
+                        <thead>
+                            <tr className='ticketHeader'>
+                                <th>Name</th>
+                                <th>Building</th>
+                                <th>Location</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody className='listedTickets'>
+                            <tr>
+                                <td>Gilbert, Jake</td>
+                                <td>Fretwell</td>
+                                <td>Bathroom</td>
+                                <td><a href=''><button className='viewButton'>view</button></a></td>
+                            </tr>
+                            <tr>
+                                <td>Shugarman, Tess</td>
+                                <td>Colvard</td>
+                                <td>Hallway</td>
+                                <td><a href=''><button className='viewButton'>view</button></a></td>
+                            </tr>
+                            <tr>
+                                <td>Masangkay, Mico</td>
+                                <td>Denny</td>
+                                <td>Classroom</td>
+                                <td><a href=''><button className='viewButton'>view</button></a></td>
+                            </tr>
+                            <tr>
+                                <td>Freeman, Danielle</td>
+                                <td>Prospector</td>
+                                <td>Bathroom</td>
+                                <td><a href=''><button className='viewButton'>view</button></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
