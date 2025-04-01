@@ -26,21 +26,32 @@
   display: flex;
   flex-direction: column;
   background-color: #A49665;
+  align-content: center;
+  justify-content: center;
   gap: 20px;
   border-radius: 10px;
   padding: 2%;
 }
-.left-panel button {
-  padding: 10px;
+.left-panel a {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  width: 100%;
+}
+.left-panel a:hover button{
+  background-color: #003823;
+}
+.left-panel a button
+{
+  width: 100%;
+  padding: 10%;
   border: none;
   border-radius: 10px;
   background-color: #005035;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-.left-panel button:hover {
-  background-color: #003823;
+  text-align: center;
 }
 .right-panel {
   width: 75%;
@@ -50,7 +61,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 .admin-tickets-table {
-  width: 100%;
+  width: 90%;
   border-collapse: collapse;
 }
 .admin-tickets-table th, .admin-tickets-table td {
@@ -69,7 +80,4 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
-}
-.view-btn:hover {
-  background-color: #003823;
 }

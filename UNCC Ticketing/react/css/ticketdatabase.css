@@ -1,0 +1,61 @@
+.fullPage {
+  display: flex;
+  height: 100vh; 
+  justify-content: space-between;
+}
+
+.leftPanel {
+  width: 10%; 
+  background-color: #f4f4f4;
+  height: 100vh;
+  flex-shrink: 0;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+.rightPanel {
+  flex-grow: 1;
+  margin: 20px;
+  background-color: #ffffff;
+  overflow-y: auto;
+}
+
+.filters ul {
+  list-style: none;
+  padding: 0;
+}
+.listedTickets li:nth-child(odd){
+  background-color: lightgray;
+}​
+
+.filters li {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.allTickets ul {
+  list-style: none;
+  padding: 0;
+  border: 1px solid lightgrey;
+  background-color: #fafafa;
+  padding: 10px;
+}
+
+.allTickets li {
+  padding: 8px;
+  border: 1px solid grey;
+}
+
+.ticketHeader {
+  font-weight: bold;
+  background-color: lightgray;
+}
+
+.viewButton{
+  background: none;
+  color: black;
+  padding: 0;
+  margin: 0;
+  font-weight: 900;
+  font-family: 'Courier New', Courier, monospace;
+}
