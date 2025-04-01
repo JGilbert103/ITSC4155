@@ -1,6 +1,8 @@
 import React from 'react'
 import '../css/about.css'
 import CharlotteLogo from "../src/assets/UNC_Charlotte_Primary_Horiz_Logo.png";
+import MicoHeadshot from "../src/assets/Mico_Headshot.jpg";
+
 
 
 
@@ -57,6 +59,7 @@ export const About = () => {
               <div className="id-card">
                 <div className="id-header">
                 <img src={CharlotteLogo} alt="Charlotte Logo" className="logo" />
+                <img src={MicoHeadshot} alt="Mico Headshot" classname="mHeadshot" />
                 </div>
                 <div className="gold-divider"></div>
                 <div className="id-body">
