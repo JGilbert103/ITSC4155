@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/ticket.css'
+import '../css/ticket.css';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 

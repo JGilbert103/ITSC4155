@@ -10,9 +10,8 @@ app.use(express.json({ extended: false }));
 const cors = require('cors');
 app.use(cors());
 
-app.get('/test', (req, res) => {
-    res.json({message: "Hello"});
-})
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
