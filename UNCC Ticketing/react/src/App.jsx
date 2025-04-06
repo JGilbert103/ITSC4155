@@ -11,6 +11,7 @@ import AdminPortal from '../components/AdminPortal';
 import { FAQ } from '../components/FAQ';
 import { About } from '../components/About';
 import TicketDatabase from '../components/TicketDatabase';
+import React from 'react';
 
 const AuthContext = createContext();
 

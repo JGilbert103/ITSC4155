@@ -17,6 +17,8 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "hamburger-react": "^2.5.2",
+    "jest-fixed-jsdom": "^0.0.9",
+    "mongoose": "^8.13.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.14.0",
     "nodemon": "^3.1.9",
@@ -50,15 +52,5 @@
     "ts-node": "^10.9.2",
     "util": "^0.12.5",
     "vite": "^6.2.0"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.(js|jsx)$": "babel-jest"
-    },
-    "moduleNameMapper": {
-      "\\.(css|less)$": "identity-obj-proxy",
-      "\\.(jpg|jpeg|png|gif|webp|svg)$": "../mocks/fileMock.js"
-    },
-    "testEnvironment": "jest-environment-jsdom"
   }
 }
