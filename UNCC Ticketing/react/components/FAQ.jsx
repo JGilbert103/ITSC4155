@@ -1,5 +1,5 @@
-import React from 'react'
-import '../css/faq.css'
+import React from 'react';
+import '../css/faq.css';
 import { NavLink } from 'react-router-dom';
 
 export const FAQ = () => {

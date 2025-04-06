@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import '../../css/navbar.css'
-import {Sling as Hamburger} from 'hamburger-react'
+import '../../css/navbar.css';
+import {Sling as Hamburger} from 'hamburger-react';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect, createContext, useContext, useRef } from 'react'
+import { useState, useEffect, createContext, useContext, useRef } from 'react';
 import { useAuth } from '../../src/App';
 
 

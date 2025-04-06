@@ -4,13 +4,13 @@
  */
 
 import type {Config} from '@jest/types';
-import { TextEncoder, TextDecoder } from 'util';
-
-console.log("TextEncoder exists?", typeof TextEncoder);
 
 module.exports = {
   testEnvironment: 'jsdom',
   setupFiles: ['<rootDir>/jest.setup.js'],
+  globals: {
+    Uint8Array: Uint8Array,
+  },
   moduleFileExtensions: ['js', 'jsx', 'json'],
   transform: {
     '^.+\\.(js|jsx)$': 'babel-jest',

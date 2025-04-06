@@ -1,5 +1,5 @@
-import React from 'react'
-import '../css/about.css'
+import React from 'react';
+import '../css/about.css';
 import CharlotteLogo from "../src/assets/UNC_Charlotte_Primary_Horiz_Logo.png";
 import MicoHeadshot from "../src/assets/Mico_Headshot.jpg";
 
