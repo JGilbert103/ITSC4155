@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/about.css';
 import CharlotteLogo from "../src/assets/UNC_Charlotte_Primary_Horiz_Logo.png";
 import MicoHeadshot from "../src/assets/Mico_Headshot.png";
+import TessHeadshot from "../src/assets/Tess_Headshot.jpg";
 
 
 
@@ -46,12 +47,13 @@ export const About = () => {
               <div className="id-card">
                 <div className="id-header">
                 <img src={CharlotteLogo} alt="Charlotte Logo" className="logo" />
+                <img src={TessHeadshot} alt="Tess Headshot" className="tHeadshot" />
                 </div>
                 <div className="gold-divider"></div>
                 <div className="id-body">
                   <p className="id-name">Tess Shugarman</p>
                   <p className="id-year">Senior</p>
-                  <p className="id-label">ID#: 102938123</p>
+                  <p className="id-label">ID#: 801337590</p>
                   <p className="id-label">Exp 05/29/2025</p>
                 </div>
               </div>
