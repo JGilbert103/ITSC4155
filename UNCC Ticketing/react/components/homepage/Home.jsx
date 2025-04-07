@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import '../../css/home.css'
+import '../../css/home.css';
+import WelcomeNorm from "../../src/assets/WelcomePageNorm.gif";
 
 function Home (){
 
@@ -8,9 +9,10 @@ function Home (){
     return(
         <div className='homebody'>
             <div className='welcome'>
-                <h1>Welcome to Niner Maintenance</h1>
-                <p>Your one-stop solution for maintenance requests and support.</p>
+                <h1>Welcome to Niner Maintenance!</h1>
+                <p>- Your one-stop solution for maintenance requests and support! -</p>
             </div>
+            <img src={WelcomeNorm} alt="Welcome Norm" className="homeGif" />
             {!isAuthenticated ? (
                 <div className='buttons'>
                     <a href="/login">
