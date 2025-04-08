@@ -26,4 +26,6 @@ mockData={
 
 collection.insertMany([mockData]);
 
+console.log(mockData);
+
 module.exports = connect();
