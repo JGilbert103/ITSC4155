@@ -3,7 +3,10 @@ import '../css/ticket.css';
 import {useEffect, useState} from 'react';
 import axios from 'axios';
 
+
 function Ticket() {
+    const url = 'mongodb+srv://danielleff03:9tZXrhKqsi3Mn2S8@cluster0.zekhtoy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+    
     const [buildingname, setBuildingname] = useState([]) 
     const [place, setPlace] = useState([])
 
@@ -38,7 +41,8 @@ function Ticket() {
             updates,
             photo: image,
         });
-        axios.post('url/tickets', {firstname: firstname, lastname:lastname, problem: problem, building: building, location: location, updates:updates, photo:image})
+        
+        axios.post('/tickets', {firstname: firstname, lastname:lastname, problem: problem, building: building, location: location, updates:updates, photo:image})
         .then((data) =>{
             console.log(data)
             console.log(firstname, lastname, problem, building, location, updates, image)
@@ -50,40 +54,8 @@ function Ticket() {
             setUpdates('')
             setImage(null)
         })
+            
     }
-    
-    /*
-    const handleSubmit = (e) => {
-        if (firstname.length === 0){
-            alert("hellooooo")
-        } else {
-            alert("sucess")
-            const url = "http://localhost/Niner/database.php";
-
-
-            let fData = new FormData();
-            fData.append('firstname', firstname);
-            fData.append("lastname", lastname);
-            
-            fData.append("buildingname", buildingname);
-            fData.append("location", location);
-            fData.append("description", description);
-            fData.append("image", image);
-            fData.append("updates", updates);
-            
-            
-            axios.post(url, fData)
-            .then(response => {
-                console.log("Response", response.data);
-                alert(`Server reponse: ${response.data}`)
-            })
-            .catch(error => console.log("error:", error));
-            console.log("Submitting:", { firstname, lastname});
-          
-
-        }
-    }
-    */
 
     return (
         <>

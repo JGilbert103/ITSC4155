@@ -2,11 +2,20 @@ const { application } = require('express');
 const mongoose = require('mongoose');
 const express = require("express")
 const cors = require("cors")
+const ticketModel = require('./schemas/ticket.js');
+
 
 const app = express()
 app.use(express.json())
 app.use(cors())
-const url = 'mongodb+srv://danielleff03:9tZXrhKqsi3Mn2S8@cluster0.zekhtoy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+app.use(express.urlencoded({extended:true}))
+app.use(cors({
+    origin : 'http://localhost:5001',
+    credentials:true
+}))
+
+
+const url = 'mongodb+srv://danielleff03:9tZXrhKqsi3Mn2S8@cluster0.zekhtoy.mongodb.net/NinerMaintenance?retryWrites=true&w=majority&appName=Cluster0';
 
 const connect = async () => {
     try {
@@ -18,28 +27,34 @@ const connect = async () => {
 }
 
 app.post('/tickets', (req, res) =>{
+    ticketModel.create(req.body)
+    .then(ticket => res.json(ticket))
+    .catch(err => res.json(err))
 
 })
 
-const ticketSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true
-    }
-});
+app.get('/tickets', (req, res) =>{
+    ticketModel.create(req.body)
+    .then(ticket => res.json(ticket))
+    .catch(err => res.json(err))
+
+})
+    
 
 
 
-const collection = new mongoose.model('tickets', ticketSchema);
+//const collection = new mongoose.model('tickets', ticketSchema);
 
+/*
 mockData={
     firstName: 'John'
 }
+    */
 
 
 
-collection.insertMany([mockData]);
+//collection.insertMany([mockData]);
 
-console.log(mockData);
+//console.log(mockData);
 
 module.exports = connect();
