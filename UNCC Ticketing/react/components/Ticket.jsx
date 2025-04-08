@@ -38,10 +38,10 @@ function Ticket() {
             updates,
             photo: image,
         });
-        axios.post('http://localhost:8081/tickets', {firstname: firstname, lastname:lastname, problem: problem, building: building, location: location, updates:updates, photo:image})
+        axios.post('http://localhost:8081/tickets', {firstname: firstname, lastname:lastname, problem: problem, building: building, location: location, updates:updates, photo:image, user:user})
         .then((data) =>{
             console.log(data)
-            console.log(firstname, lastname, problem, building, location, updates, image)
+            console.log(firstname, lastname, problem, building, location, updates, image, user)
             setFirstName('')
             setLastName('')
             setProblem('')
@@ -49,16 +49,17 @@ function Ticket() {
             setLocation('')
             setUpdates('')
             setImage(null)
+            setUser('')
         })
     }
     
-    /*
+
     const handleSubmit = (e) => {
         if (firstname.length === 0){
             alert("hellooooo")
         } else {
             alert("sucess")
-            const url = "http://localhost/Niner/database.php";
+            const url = "";
 
 
             let fData = new FormData();
@@ -70,6 +71,7 @@ function Ticket() {
             fData.append("description", description);
             fData.append("image", image);
             fData.append("updates", updates);
+            fData.append("user", user);
             
             
             axios.post(url, fData)
@@ -83,7 +85,6 @@ function Ticket() {
 
         }
     }
-    */
 
     return (
         <>
@@ -112,40 +113,39 @@ function Ticket() {
                                   
                             </div>
                         </div>
-                        </div>
+                    </div>
                     
-                        <div className="location-type">
-                            <label className="location-label">Location:</label> 
-                            <div className="location-select">
-                                {place.map((name, i) =>(
-                                    <label key={i} >{name}
-                                        <input value={name} id={name} type="radio" name="location" onChange={(e) => setLocation(e.target.value)}></input>
-                                    </label>
-                                ))}
-                            
-                            </div>
+                    <div className="location-type">
+                        <label className="location-label">Location:</label> 
+                        <div className="location-select">
+                            {place.map((name, i) =>(
+                                <label key={i} >{name}
+                                    <input value={name} id={name} type="radio" name="location" onChange={(e) => setLocation(e.target.value)}></input>
+                                </label>
+                            ))}
+                        
                         </div>
+                    </div>
 
-                        <div className="problem">
-                            <label>Please Describe Issue and Location:
-                                <br></br>
-                                <textarea name="problem" value={problem} onChange={(e) => setProblem(e.target.value)}></textarea>
-                            </label>
-                        </div>
+                    <div className="problem">
+                        <label>Please Describe Issue and Location:
+                            <br></br>
+                            <textarea name="problem" value={problem} onChange={(e) => setProblem(e.target.value)}></textarea>
+                        </label>
+                    </div>
 
-                        <div className="add-photo">
-                            <label>Import photo of issue and location:
-                                <input type="file" name="photo" accept="image/*" onChange={(e) => setImage(e.target.files[0])}></input>
-                            </label>
-                        </div>
+                    <div className="add-photo">
+                        <label>Import photo of issue and location:
+                            <input type="file" name="photo" accept="image/*" onChange={(e) => setImage(e.target.files[0])}></input>
+                        </label>
+                    </div>
 
-                        <div className="updates">
-                            <label>Do you want email updates on this ticket to your school email?
-                                <input type="checkbox" checked={updates} onChange={(e) => setUpdates(e.target.checked)}></input>
-                            </label>
-                        </div>
-                        <button >Submit Ticket</button>
-                        {/* <button type="button" onClick={handleSubmit}>Submit Ticket</button> */}
+                    <div className="updates">
+                        <label>Do you want email updates on this ticket to your school email?
+                            <input type="checkbox" checked={updates} onChange={(e) => setUpdates(e.target.checked)}></input>
+                        </label>
+                    </div>
+                        <button type="button" onClick={handleSubmit}>Submit Ticket</button>
                     </form>
                 </div>
             </div>
