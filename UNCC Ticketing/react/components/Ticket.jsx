@@ -72,7 +72,7 @@ function Ticket() {
                                 <input type="text" required value={lastname} onChange={(e) => setLastName(e.target.value)}/>
                             </label>
                         
-                        <div className="building-location">
+                            <div className="building-location">
                             <div className="building-dropdown">
                                 <label>Enter Building Name:</label>
                                 <select value={building} onChange={(e) => setBuilding(e.target.value)}> 

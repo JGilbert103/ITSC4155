@@ -10,7 +10,8 @@ import UserPortal from '../components/UserPortal';
 import AdminPortal from '../components/AdminPortal';
 import { FAQ } from '../components/FAQ';
 import { About } from '../components/About';
-import TicketDatabase from '../components/TicketDatabase';
+import TicketDatabase from '../components/ticketdatabase';
+import ManageUsers from '../components/ManageUsers';
 import React from 'react';
 
 const AuthContext = createContext();
@@ -57,6 +58,7 @@ function App() {
         <Route path="/faq" element={<FAQ/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/ticket-database" element={<TicketDatabase/>}/>
+        <Route path="/manage-users" element={<ManageUsers/>}/>
 
       </Routes>
     </AuthContext.Provider>
