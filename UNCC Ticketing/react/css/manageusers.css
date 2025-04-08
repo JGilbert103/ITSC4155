@@ -1,0 +1,16 @@
+.allUsers th, .allUsers td {
+    border: 1px solid grey;
+    padding: 1%;
+    text-align: left;
+    overflow: hidden;
+}
+.allUsers table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.allUsers {
+    width: 100%;
+    border: 1px solid lightgrey;
+    background-color: #fafafa;
+    padding: 10px;
+  }

@@ -99,3 +99,17 @@
 {
   width: 100%;
 }
+
+.backButton
+{
+  background: red;
+  padding: 5%;
+}
+
+.buttonObject
+{
+  padding-bottom: 2%;
+  margin-top: 5%;
+  padding-right: 80%;
+  width: 100%;
+}

@@ -31,6 +31,7 @@ function TicketDatabase() {
             <div className='leftPanel'>
                 <div className='filtersMain'>
                     <ul className='filters'>
+                        <li className='buttonObject'><a href='adminportal'><button className='backButton'>&lt;- Back</button></a></li>
                         <li className='searching'>
                             <div className='searchBox'>
                                 <input type="text" placeholder="Search By User..." />
