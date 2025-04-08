@@ -25,7 +25,6 @@ const connect = async () => {
     }
 }
 
-<<<<<<< HEAD
 app.post('/tickets', (req, res) =>{
     ticketModel.create(req.body)
     .then(ticket => res.json(ticket))
@@ -57,6 +56,4 @@ mockData={
 
 //console.log(mockData);
 
-=======
->>>>>>> 5587755513f0e8af9d8411ab96feba696cc6a697
 module.exports = connect();
