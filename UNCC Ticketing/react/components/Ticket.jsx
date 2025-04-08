@@ -42,7 +42,7 @@ function Ticket() {
             photo: image,
         });
         
-        axios.post('/tickets', {firstname: firstname, lastname:lastname, problem: problem, building: building, location: location, updates:updates, photo:image})
+        axios.post('http://localhost:5000/tickets', {firstname: firstname, lastname:lastname, problem: problem, building: building, location: location, updates:updates, photo:image})
         .then((data) =>{
             console.log(data)
             console.log(firstname, lastname, problem, building, location, updates, image)
@@ -51,7 +51,7 @@ function Ticket() {
             setProblem('')
             setBuilding('')
             setLocation('')
-            setUpdates('')
+            setUpdates(false)
             setImage(null)
         })
             

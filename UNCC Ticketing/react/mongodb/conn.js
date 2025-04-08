@@ -32,11 +32,13 @@ app.post('/tickets', (req, res) =>{
 
 })
 
-app.get('/tickets', (req, res) =>{
-    ticketModel.create(req.body)
-    .then(ticket => res.json(ticket))
-    .catch(err => res.json(err))
-
+app.get('/tickets', async (req, res) => {
+    try {
+        const tickets = await ticketModel.find();
+        res.json(tickets);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 })
     
 

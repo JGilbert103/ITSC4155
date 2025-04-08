@@ -1,22 +1,34 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
-const DataModel = require('./schemas/ticket.js');
-const connect = require('./conn.js');
+const ticketModel = require('./schemas/ticket.js');
 
 const app = express();
-app.use(express.json({ extended: false }));
+// Middleware
+app.use(express.json());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
 
-const cors = require('cors');
-app.use(cors());
+// MongoDB Connection
+const mongoURI = 'mongodb+srv://danielleff03:9tZXrhKqsi3Mn2S8@cluster0.zekhtoy.mongodb.net/NinerMaintenance?retryWrites=true&w=majority&appName=Cluster0';
+mongoose.connect(mongoURI, {})
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.error('MongoDB connection error:', err));
 
 
-app.post('/tickets', (req, res) =>{
-    ticketModel.create(req.body)
-    .then(ticket => res.json(ticket))
-    .catch(err => res.json(err))
-
-})
+// Routes
+app.post('/tickets', async (req, res) => {
+    try {
+        const ticket = await ticketModel.create(req.body);
+        res.json(ticket);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to create ticket' });
+    }
+});
 
 
 const PORT = process.env.PORT || 5000;
