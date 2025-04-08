@@ -24,9 +24,9 @@ export const About = () => {
                 </div>
                 <div className="gold-divider"></div>
                 <div className="id-body">
-                  <p className="id-name">Jake Gilbert</p>
+                  <p className="id-name">James Gilbert</p>
                   <p className="id-year">Senior</p>
-                  <p className="id-label">ID#: 800000000</p>
+                  <p className="id-label">ID#: 801317781</p>
                   <p className="id-label">Exp: 05/9/2025</p>
                 </div>
               </div>
