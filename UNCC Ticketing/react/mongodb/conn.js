@@ -11,21 +11,4 @@ const connect = async () => {
     }
 }
 
-const ticketSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true
-    }
-});
-
-const collection = new mongoose.model('tickets', ticketSchema);
-
-mockData={
-    firstName: 'John'
-}
-
-collection.insertMany([mockData]);
-
-console.log(mockData);
-
 module.exports = connect();
