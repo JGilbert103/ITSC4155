@@ -32,7 +32,7 @@ app.post('/tickets', (req, res) =>{
 
 })
 
-app.get('/tickets', async (req, res) => {
+app.get('/getTickets', async (req, res) => {
     try {
         const tickets = await ticketModel.find();
         res.json(tickets);

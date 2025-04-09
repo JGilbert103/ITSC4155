@@ -2,10 +2,19 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../css/ticketdatabase.css';
 import {useEffect, useState} from 'react';
+import axios from 'axios';
 
 
 function TicketDatabase() {
     const [buildingname, setBuildingname] = useState([]) 
+    
+    const [tickets, setTickets] = useState([])
+    useEffect(() => {
+        axios.get('http://localhost:3001/getTickets')
+        .then(tickets => setTickets(tickets.data))
+        .catch(err => console.log(err))
+    }, [])
+
     useEffect(() =>{
             fetch("/buildings.txt")
                 .then(response => response.text())
@@ -26,6 +35,8 @@ function TicketDatabase() {
                 const [location, setLocation] = useState('All')
                 const [updates, setUpdates] = useState('')
                 const [image, setImage] = useState(null)
+
+
     return (
         <div className='fullPage'>
             <div className='leftPanel'>
@@ -117,6 +128,21 @@ function TicketDatabase() {
                                 <td>Bathroom</td>
                                 <td><a href=''><button className='viewButton'>view</button></a></td>
                             </tr>
+
+                            {
+                            tickets.map(ticket => {
+                                return <tr>
+                                    <td>N/A</td>
+                                    <td>{ticket.lastname}, {ticket.firstname}</td> 
+                                    <td>{ticket.building}</td> 
+                                    <td>{ticket.location}</td> 
+                                    <td><a href=''><button className='viewButton'>view</button></a></td>
+                                  
+                                   
+                                </tr>
+                                        
+                                    })
+                                }
                         </tbody>
                     </table>
                 </div>

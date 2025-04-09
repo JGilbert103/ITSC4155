@@ -8,7 +8,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'http://localhost:5173', 
     credentials: true
 }));
 
@@ -31,7 +31,15 @@ app.post('/tickets', async (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 5000;
+app.get('/getTickets', async (req, res) =>{
+       ticketModel.find()
+       .then(tickets => res.json(tickets)) 
+       .catch(err => res.json(err))
+  
+
+})
+
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 })

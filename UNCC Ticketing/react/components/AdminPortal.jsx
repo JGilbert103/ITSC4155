@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../css/adminportal.css';
+import axios from 'axios'
 
 function AdminPortal() {
+    const [tickets, setTickets] = useState([])
+    useEffect(() => {
+        axios.get('http://localhost:3001/getTickets')
+        .then(tickets => setTickets(tickets.data))
+        .catch(err => console.log(err))
+    }, [])
     return (
         <div className='admin-portal-container'>
             <div className='title'>
@@ -22,7 +29,7 @@ function AdminPortal() {
                 </div>
                 <div className='right-panel'>
                     <table className='admin-tickets-table'>
-                        <thead>
+           
                             <tr>
                                 <th>Ticket ID</th>
                                 <th>First Name</th>
@@ -32,10 +39,25 @@ function AdminPortal() {
                                 <th>Date Submitted</th>
                                 <th>Actions</th>
                             </tr>
-                        </thead>
+                
                         <tbody>
+                        {
+                            tickets.map(ticket => {
+                                return <tr>
+                                    <td>N/A</td>
+                                    <td>{ticket.firstname}</td> 
+                                    <td>{ticket.lastname}</td> 
+                                    <td>{ticket.problem}</td> 
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                   
+                                </tr>
+                                        
+                                    })
+                                }
                             <tr>
-                                
+                
                             </tr>
                             <tr>
                                 
