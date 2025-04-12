@@ -9,6 +9,7 @@ function Ticket() {
     
     const [buildingname, setBuildingname] = useState([]) 
     const [place, setPlace] = useState([])
+    const [roomNumber, setRoomNumber] = useState('');
 
     useEffect(() =>{
         fetch("/locations.txt")
@@ -32,17 +33,21 @@ function Ticket() {
 
     const submit = (e) =>{
         e.preventDefault()
+        const fullLocation = (location === "Classroom" || location === "Dorm") && roomNumber
+        ? `${location} ${roomNumber}`
+        : location;
+
         console.log("User input:", {
             firstname,
             lastname,
             problem,
             building,
-            location,
+            location: fullLocation,
             updates,
             photo: image,
         });
         
-        axios.post('http://localhost:3001/tickets', {firstname: firstname, lastname:lastname, problem: problem, building: building, location: location, updates:updates, photo:image})
+        axios.post('http://localhost:3001/tickets', {firstname: firstname, lastname:lastname, problem: problem, building: building, location: fullLocation, updates:updates, photo:image})
         .then((data) =>{
             console.log(data)
             console.log(firstname, lastname, problem, building, location, updates, image)
@@ -62,17 +67,20 @@ function Ticket() {
             <div className="border">
                 <div className="form-border" >
                     <form onSubmit={submit}> 
-                        <div className="first-last-build">
-                            <label>First Name:
-                                <br/>
-                                <input value={firstname} name="firstname" onChange={(e) => setFirstName(e.target.value)} type="text" required />
-                            </label>
-                            <label>Last Name:
-                                <br/>
-                                <input type="text" required value={lastname} onChange={(e) => setLastName(e.target.value)}/>
-                            </label>
-                        
-                            <div className="building-location">
+                    <div className="return">
+                    <a className="back-button" href="/userportal">&larr; Back</a>
+                    </div>
+                    <div className="first-last-build">
+                        <label>First Name:
+                            <br/>
+                            <input value={firstname} autoFocus name="firstname" onChange={(e) => setFirstName(e.target.value)} type="text" required />
+                        </label>
+                        <label>Last Name:
+                            <br/>
+                            <input type="text" required value={lastname} onChange={(e) => setLastName(e.target.value)}/>
+                        </label>
+                    
+                        <div className="building-location">
                             <div className="building-dropdown">
                                 <label>Enter Building Name:</label>
                                 <select value={building} onChange={(e) => setBuilding(e.target.value)}> 
@@ -81,22 +89,36 @@ function Ticket() {
                                         <option key={i} value={name}>{name}</option>
                                     ))}
                                 </select>
-                                  
+                                    
                             </div>
                         </div>
-                        </div>
+                    </div>
                     
                         <div className="location-type">
                             <label className="location-label">Location:</label> 
                             <div className="location-select">
                                 {place.map((name, i) =>(
                                     <label key={i} >{name}
-                                        <input value={name} id={name} type="radio" name="location" onChange={(e) => setLocation(e.target.value)}></input>
+                                        <input value={name.trim().replace(':', '')} id={name} type="radio" name="location" onChange={(e) => setLocation(e.target.value)}></input>
                                     </label>
                                 ))}
                             
                             </div>
                         </div>
+
+                        {(location === "Classroom" || location === "Dorm") && (
+                        <div className="room-number">
+                            <label>Room Number:
+                                <br />
+                                <input
+                                    type="text"
+                                    value={roomNumber}
+                                    onChange={(e) => setRoomNumber(e.target.value)}
+                                    required
+                                />
+                            </label>
+                        </div>
+                    )}
 
                         <div className="problem">
                             <label>Please Describe Issue and Location:
@@ -116,8 +138,11 @@ function Ticket() {
                                 <input type="checkbox" checked={updates} onChange={(e) => setUpdates(e.target.checked)}></input>
                             </label>
                         </div>
-                        <button >Submit Ticket</button>
-                        {/* <button type="button" onClick={handleSubmit}>Submit Ticket</button> */}
+                        <div className='submitTicket'>
+                            <button >Submit Ticket</button>
+                            {/* <button type="button" onClick={handleSubmit}>Submit Ticket</button> */}
+                        </div>
+                        
                     </form>
                 </div>
             </div>
