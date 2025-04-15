@@ -89,7 +89,10 @@
   padding-left: 3%;
   padding-top: 3%;
 }
-
+.roomNumber
+{
+  width:100%;
+}
 .buildingLocation
 {
   margin: 10%;

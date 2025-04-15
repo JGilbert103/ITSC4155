@@ -1,20 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../css/ticketdatabase.css';
-import {useEffect, useState} from 'react';
 import axios from 'axios';
-
 
 function TicketDatabase() {
     const [buildingname, setBuildingname] = useState([]);
     const [place, setPlace] = useState([]);
     const [tickets, setTickets] = useState([]);
 
-    // Filter state
     const [building, setBuilding] = useState('');
     const [location, setLocation] = useState('All');
     const [roomNumber, setRoomNumber] = useState('');
     const [searchText, setSearchText] = useState('');
+
 
     useEffect(() => {
         axios.get('http://localhost:3001/getTickets')
@@ -22,29 +20,51 @@ function TicketDatabase() {
             .catch(err => console.log(err));
     }, []);
 
+
     useEffect(() => {
         fetch("/buildings.txt")
             .then(response => response.text())
             .then(text => setBuildingname(text.split("\n")));
     }, []);
 
+
     useEffect(() => {
         fetch("/locations.txt")
             .then(response => response.text())
-            .then(text => setPlace(text.split("\n")));
+            .then(text => {
+                const cleaned = text
+                    .split("\n")
+                    .map(line => line.trim().replace(/:$/, ''))
+                    .filter(line => line.length > 0);
+                setPlace(cleaned);
+            });
     }, []);
+    
+    
+    const extractRoomFromLocation = (loc) => {
+        const match = loc?.match(/\b(?:Classroom|Dorm)\s+(.+)/i);
+        return match ? match[1] : '';
+    };
+
+    const getLocationType = (loc) => {
+        if (!loc) return '';
+        const parts = loc.split(' ');
+        return parts[0];
+    };
 
     const filteredTickets = tickets.filter(ticket => {
         const fullName = `${ticket.firstname} ${ticket.lastname}`.toLowerCase();
         const nameMatch = fullName.includes(searchText.toLowerCase());
 
         const buildingMatch = building === '' || ticket.building === building;
-        const locationMatch = location === 'All' || ticket.location === location.replace(':', '');
 
-        const roomMatch =
-            (location === 'Classroom' || location === 'Dorm')
-                ? ticket.roomnumber?.toLowerCase().includes(roomNumber.toLowerCase())
-                : true;
+        const locationType = getLocationType(ticket.location);
+        const locationMatch = location === 'All' || locationType === location;
+
+        const ticketRoom = ticket.roomnumber || extractRoomFromLocation(ticket.location);
+        const roomMatch = (location === 'Classroom' || location === 'Dorm')
+            ? ticketRoom.toLowerCase().includes(roomNumber.toLowerCase())
+            : true;
 
         return nameMatch && buildingMatch && locationMatch && roomMatch;
     });
@@ -109,7 +129,7 @@ function TicketDatabase() {
                                 ))}
 
                                 {(location === "Classroom" || location === "Dorm") && (
-                                    <div className="room-number">
+                                    <div className="roomNumber">
                                         <label>Room Number:
                                             <br />
                                             <input
@@ -141,20 +161,23 @@ function TicketDatabase() {
                         </thead>
                         <tbody className='listedTickets'>
                             {filteredTickets.length > 0 ? (
-                                filteredTickets.map((ticket, index) => (
-                                    <tr key={index}>
-                                        <td>N/A</td>
-                                        <td>{ticket.lastname}, {ticket.firstname}</td>
-                                        <td>{ticket.building}</td>
-                                        <td>{ticket.location}</td>
-                                        <td>{ticket.roomnumber || 'N/A'}</td>
-                                        <td>
-                                            <a href=''>
-                                                <button className='viewButton'>view</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                ))
+                                filteredTickets.map((ticket, index) => {
+                                    const room = ticket.roomnumber || extractRoomFromLocation(ticket.location);
+                                    return (
+                                        <tr key={index}>
+                                            <td>N/A</td>
+                                            <td>{ticket.lastname}, {ticket.firstname}</td>
+                                            <td>{ticket.building}</td>
+                                            <td>{getLocationType(ticket.location)}</td>
+                                            <td>{room || 'N/A'}</td>
+                                            <td>
+                                                <a href=''>
+                                                    <button className='viewButton'>view</button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
                             ) : (
                                 <tr>
                                     <td colSpan="6" style={{ textAlign: 'center' }}>No tickets found.</td>
