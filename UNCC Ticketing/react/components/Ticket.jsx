@@ -28,7 +28,7 @@ function Ticket() {
     const [problem, setProblem] = useState('')
     const [building, setBuilding] = useState('')
     const [location, setLocation] = useState('')
-    const [updates, setUpdates] = useState('')
+    const [updates, setUpdates] = useState(false)
     const [image, setImage] = useState(null)
 
     const submit = (e) =>{
