@@ -2,33 +2,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2%;
   background-color: #f4f4f4;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 .user-portal-title {
   text-align: center;
   margin-bottom: 2%;
-  color: #A49665;
-  background-color: #005035;
-  padding: 1%;
+  color: #005035;
+  background-color: grey;
+  padding: 2%;
   border-radius: 10px;
-  width: 100%;
+  width: 90%;
 }
 
 .user-portal-content {
   display: flex;
-  width: 90%;
-  height: 80%;
-  gap: 2%;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 .user-portal-left-panel {
   width: 20%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 80px;
   padding: 2%;
   background-color: #A49665;
   border-radius: 10px;
@@ -36,7 +36,8 @@
 }
 
 .user-portal-left-panel button {
-  padding: 10px;
+  padding: 30px;
+  height: 100%;
   background-color: #005035;
   color: white;
   border: none;
@@ -50,31 +51,31 @@
   background-color: #003D26;
 }
 
-.user-portal-right-panel {
-  width: 70%;
+.right-panel {
+  width: 75%;
   background-color: white;
-  padding: 2%;
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
-.user-portal-tickets-table {
-  width: 100%;
+.user-tickets-table {
+  width: 90%;
   border-collapse: collapse;
-}
 
-.user-portal-tickets-table th, .tickets-table td {
-  padding: 12px;
+}
+.user-tickets-table th, .user-tickets-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border: grey solid 1px;
+  border-top: black solid 2px; 
 }
-
-.user-portal-tickets-table th {
-  background-color: #005035;
+.user-tickets-table th {
+  background-color: #A49665;
   color: white;
 }
 
-.user-portal-tickets-table tr:hover {
-  background-color: #f1f1f1;
+.user-tickets-table tr:nth-child(even)
+{
+  background-color: lightgray;
 }

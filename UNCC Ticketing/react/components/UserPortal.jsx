@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../css/userportal.css';
-
-function UserPortal() {
-
-    //POTENTIAL LOGIC FOR ADDING TICKETS TO TABLE FROM DB
+import axios from 'axios'
+//POTENTIAL LOGIC FOR ADDING TICKETS TO TABLE FROM DB
     
      /** const [tickets, setTickets] = useState([]);
     const [newTicket, setNewTicket] = useState({
@@ -38,6 +36,14 @@ function UserPortal() {
             console.log(error);
         });
     }; */
+function UserPortal() {
+    const [tickets, setTickets] = useState([])
+    useEffect(() => {
+        axios.get('http://localhost:3001/getTickets')
+        .then(tickets => setTickets(tickets.data))
+        .catch(err => console.log(err))
+    }, [])
+    
 
     
     return (
@@ -49,25 +55,46 @@ function UserPortal() {
                 <div className='user-portal-left-panel'>
                     <a className='user-portal-open-ticket-btn'href="/ticket">
                         <button className='user-portal-open-ticket-btn' >Submit a New Ticket</button>
-                    </a>                        
-                    <a className='user-portal-view-details-btn'href="/ticketdatabase">
-                        <button className='user-portal-view-details-btn'>View Ticket Details</button>
-                    </a>  
+                    </a>
+                    <a className='user-portal-open-database-btn'href="/ticket-database">
+                        <button className='user-portal-open-ticket-btn'>Open ticket database</button>  
+                    </a>
                 </div>
-                <div className='user-portal-right-panel'>
-                    <table className='user-portal-tickets-table'>
-                        <thead>
+                <div className='right-panel'>
+                    <table className='user-tickets-table'>
+           
                             <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Problem</th>
+                                <th>Ticket ID</th>
+                                <th>Name</th>
                                 <th>Building</th>
-                                <th>Location</th>
-                                <th>Updates</th>
+                                <th>Problem</th>
+                                <th>Status</th>
+                                <th>Date Submitted</th>
+                                <th>Actions</th>
                             </tr>
-                        </thead>
+                
                         <tbody>
-
+                        {
+                            tickets.map(ticket => {
+                                return <tr>
+                                    <td>N/A</td>
+                                    <td>{ticket.lastname}, {ticket.firstname}</td> 
+                                    <td>{ticket.building}</td> 
+                                    <td>{ticket.problem.substring(0,50)}</td> 
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                   
+                                </tr>
+                                        
+                                    })
+                                }
+                            <tr>
+                
+                            </tr>
+                            <tr>
+                                
+                            </tr>
                         </tbody>
                     </table>
                 </div>
