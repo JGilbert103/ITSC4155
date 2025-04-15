@@ -113,3 +113,9 @@
   padding-right: 80%;
   width: 100%;
 }
+
+.buildingName{
+  display: flex;
+  overflow: auto;
+
+}

@@ -4,6 +4,7 @@ import { useAuth } from '../src/App';
 import '../css/login.css';
 import { set } from 'mongoose';
 import axios from 'axios';
+//import userModel from '../mongodb/schemas/user';
 
 function Login() {
   // State to store user input
@@ -15,40 +16,43 @@ function Login() {
   const { setIsAdmin } = useAuth();
 
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (req, res) => {
     e.preventDefault();
 
-    // validating that the email is a @charlotte or @uncc email
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@(charlotte|uncc)\.edu$/;
-    if (!emailRegex.test(email)) {
-      setError('Only those with a UNCC email are authorized to access this application.');
-      return;
-    }
+      const {email, password} = req.body
+      const user = await userModel.findOne({email})
 
-    if (!email || !password) {
-      setError('Please enter both email and password.');
-      return;
-    } 
-    if (email.toUpperCase().startsWith('ADMIN'))
-    {
-      setIsAdmin(true);
-    }
+      // validating that the email is a @charlotte or @uncc email
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@(charlotte|uncc)\.edu$/;
+      if (!emailRegex.test(email)) {
+        setError('Only those with a UNCC email are authorized to access this application.');
+        return;
+      }
 
-    setIsAuthenticated(true);
-    localStorage.setItem('isAuthenticated', true);
-    localStorage.setItem('userEmail', email);
+      if (!email || !password) {
+        setError('Please enter both email and password.');
+        return;
+      } 
+      if (email.toUpperCase().startsWith('ADMIN'))
+      {
+        setIsAdmin(true);
+      }
 
-    console.log("Login successful! Redirecting...");
+      setIsAuthenticated(true);
+      localStorage.setItem('isAuthenticated', true);
+      localStorage.setItem('userEmail', email);
 
-    axios.post('http://localhost:3001/login', {email: email, password: password})
-    .then((data) =>{
-        console.log(data)
-        console.log(email, password)
-        setEmail('')
-        setPassword('')
-    })    
+      console.log("Login successful! Redirecting...");
 
-    navigate('/');
+      axios.post('http://localhost:3001/login', {email: email, password: password})
+      .then((data) =>{
+          console.log(data)
+          console.log(email, password)
+          setEmail('')
+          setPassword('')
+      })    
+
+      navigate('/');
 
   };
 
