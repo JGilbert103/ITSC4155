@@ -28,7 +28,7 @@ function Ticket() {
     const [problem, setProblem] = useState('')
     const [building, setBuilding] = useState('')
     const [location, setLocation] = useState('')
-    const [updates, setUpdates] = useState('')
+    const [updates, setUpdates] = useState(false)
     const [image, setImage] = useState(null)
 
     const submit = (e) =>{
@@ -83,8 +83,8 @@ function Ticket() {
                         <div className="building-location">
                             <div className="building-dropdown">
                                 <label>Enter Building Name:</label>
-                                <select value={building} onChange={(e) => setBuilding(e.target.value)}> 
-                                    <option>Choose one</option>
+                                <select value={building} onChange={(e) => setBuilding(e.target.value)} required> 
+                                    <option value="">Choose one</option>
                                     {buildingname.map((name, i) =>(
                                         <option key={i} value={name}>{name}</option>
                                     ))}
@@ -99,7 +99,7 @@ function Ticket() {
                             <div className="location-select">
                                 {place.map((name, i) =>(
                                     <label key={i} >{name}
-                                        <input value={name.trim().replace(':', '')} id={name} type="radio" name="location" onChange={(e) => setLocation(e.target.value)}></input>
+                                        <input value={name.trim().replace(':', '')} id={name} type="radio" name="location" onChange={(e) => setLocation(e.target.value)}required></input>
                                     </label>
                                 ))}
                             
@@ -123,7 +123,7 @@ function Ticket() {
                         <div className="problem">
                             <label>Please Describe Issue and Location:
                                 <br></br>
-                                <textarea name="problem" value={problem} onChange={(e) => setProblem(e.target.value)}></textarea>
+                                <textarea name="problem" value={problem} onChange={(e) => setProblem(e.target.value)} required></textarea>
                             </label>
                         </div>
 
