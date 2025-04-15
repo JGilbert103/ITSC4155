@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../src/App'; 
 import '../css/login.css';
+import { set } from 'mongoose';
+import axios from 'axios';
 
 function Login() {
   // State to store user input
@@ -38,8 +40,16 @@ function Login() {
 
     console.log("Login successful! Redirecting...");
 
+    axios.post('http://localhost:3001/login', {email: email, password: password})
+    .then((data) =>{
+        console.log(data)
+        console.log(email, password)
+        setEmail('')
+        setPassword('')
+    })    
+
     navigate('/');
-    
+
   };
 
   return (

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const ticketModel = require('./schemas/ticket.js');
+const userModel = require('./schemas/user.js');
 
 const app = express();
 // Middleware
@@ -30,14 +31,28 @@ app.post('/tickets', async (req, res) => {
     }
 });
 
+app.post('/register', async (req, res) => {
+    var newUser = new userModel(req.body);
 
+    newUser.password = newUser.generateHash(req.body.password);
+    newUser.save();
+});
+
+app.post('/login', async (req, res) => {
+    userModel.findOne({email: req.body.email}, function(err, user) {
+        if(!user.validPassword(req.body.password)) {
+            res.json({success: false, message: 'Authentication failed. Wrong password.'});
+        } else {
+            res.json({success: true, message: 'Authentication successful.'});
+        }
+    });
+});    
+    
 app.get('/getTickets', async (req, res) =>{
        ticketModel.find()
        .then(tickets => res.json(tickets)) 
        .catch(err => res.json(err))
-  
-
-})
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
