@@ -83,7 +83,7 @@ function UserPortal() {
                                     <td>{ticket.problem.substring(0,50)}</td> 
                                     <td>N/A</td>
                                     <td>N/A</td>
-                                    <td>N/A</td>
+                                    <td><button className='viewTicket'>view</button></td>
                                    
                                 </tr>
                                         

@@ -89,3 +89,11 @@
   cursor: pointer;
   border-radius: 5px;
 }
+.viewTicket{
+  background: rgb(161, 161, 161);
+  color: black
+}
+.viewTicket:hover
+{
+  background: rgb(83, 83, 83);
+}

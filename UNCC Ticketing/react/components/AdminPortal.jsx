@@ -48,9 +48,12 @@ function AdminPortal() {
                                     <td>{ticket.lastname}, {ticket.firstname}</td> 
                                     <td>{ticket.building}</td> 
                                     <td>{ticket.problem.substring(0,50)}</td> 
+                                    <td>
+                                        N/A 
+                                        {/* Add ticket status to ticket submission and be able to change it */}
+                                    </td>
                                     <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
+                                    <td><button className='viewTicket'>view</button></td>
                                    
                                 </tr>
                                         
