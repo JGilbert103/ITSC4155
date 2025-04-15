@@ -38,6 +38,7 @@ app.post('/register', async (req, res) => {
     newUser.save();
 });
 
+/*
 app.post('/login', async (req, res) => {
     userModel.findOne({email: req.body.email}, function(err, user) {
         if(!user.validPassword(req.body.password)) {
@@ -47,7 +48,24 @@ app.post('/login', async (req, res) => {
         }
     });
 });    
-    
+*/
+
+
+app.post('/login', async (req,res) =>{
+    try{
+        const userEmail = await userModel.findOne({email})
+        if(!user){
+            
+
+        }
+
+    } catch(err){
+        console.log(err)
+
+    }
+
+})
+
 app.get('/getTickets', async (req, res) =>{
        ticketModel.find()
        .then(tickets => res.json(tickets)) 

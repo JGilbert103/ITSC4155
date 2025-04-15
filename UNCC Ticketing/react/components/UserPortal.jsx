@@ -39,6 +39,7 @@ function UserPortal() {
         });
     }; */
 
+    
     return (
         <div className='user-portal-container'>
             <div className='user-portal-title'>
