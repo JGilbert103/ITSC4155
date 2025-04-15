@@ -16,12 +16,9 @@ function Login() {
   const { setIsAdmin } = useAuth();
 
   
-  const handleSubmit = async (req, res) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-      const {email, password} = req.body
-      const user = await userModel.findOne({email})
-
+    
       // validating that the email is a @charlotte or @uncc email
       const emailRegex = /^[a-zA-Z0-9._%+-]+@(charlotte|uncc)\.edu$/;
       if (!emailRegex.test(email)) {
