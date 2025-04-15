@@ -53,11 +53,8 @@ app.post('/login', async (req, res) => {
 
 app.post('/login', async (req,res) =>{
     try{
-        const userEmail = await userModel.findOne({email})
-        if(!user){
-            
-
-        }
+        const user = await userModel.create(req.body)
+        res.json(user)
 
     } catch(err){
         console.log(err)
