@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema({
     email: String,
-    password: String
+    password: String,
+    role: { type: Number, enum: [1, 2, 3], default: 1 } // 1 = user, 2 = admin, 3 = maintenance
 })
 
 // hash the password

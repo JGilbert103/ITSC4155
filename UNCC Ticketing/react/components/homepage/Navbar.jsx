@@ -3,35 +3,29 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import '../../css/navbar.css';
 import {Sling as Hamburger} from 'hamburger-react';
 import { useState, useEffect, createContext, useContext, useRef } from 'react';
-import { useAuth } from '../../src/App';
-
+import { AuthProvider, useAuth } from '../../src/AuthContext';
 
 
 function Navbar () {
-    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+    const { isAuthenticated, isAdmin, logout, userEmail } = useAuth(); // Use the context
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const { setIsAuthenticated } = useAuth();
-    const isAdmin = localStorage.getItem("isAdmin") === "true";
     const [isOpen, setOpen] = useState(false);
     const menuRef = useRef(null);
 
     const handleLogout = (e) => {
         e.preventDefault();
-    
-    setIsAuthenticated(false);
-    localStorage.setItem('isAuthenticated', JSON.stringify(false));
-    localStorage.setItem('userEmail', '');
-    localStorage.setItem('isAdmin' , JSON.stringify(false));
+        
+        // Use the logout function from context
+        logout();
+        
+        console.log("Logout successful! Redirecting...");
+        navigate('/');
+        setOpen(false);
+    };
 
-    console.log("Logout successful! Redirecting...");
-
-    navigate('/');
-    setOpen(false);
-    
-  };
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -119,4 +113,4 @@ function Navbar () {
 }
 
 
-export default Navbar
+export default Navbar;

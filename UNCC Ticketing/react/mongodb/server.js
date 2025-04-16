@@ -38,36 +38,106 @@ app.post('/register', async (req, res) => {
     newUser.save();
 });
 
-/*
-app.post('/login', async (req, res) => {
-    userModel.findOne({email: req.body.email}, function(err, user) {
-        if(!user.validPassword(req.body.password)) {
-            res.json({success: false, message: 'Authentication failed. Wrong password.'});
-        } else {
-            res.json({success: true, message: 'Authentication successful.'});
-        }
-    });
-});    
-*/
-
-
 app.post('/login', async (req,res) =>{
-    try{
-        const user = await userModel.create(req.body)
-        res.json(user)
+    try {
+        const { email, password } = req.body;
+        
+        let user = await userModel.findOne({ email });
+        
+        if (!user) {
+            const newUser = new userModel({
+                email: email,
+                role: 1 
+            });
+            
+            newUser.password = newUser.generateHash(password);
+            
+            user = await newUser.save();
+            
+            console.log("New user created:", email);
+            
+            return res.json({
+                id: user._id,
+                email: user.email,
+                role: user.role,
+                newUser: true
+            });
+        }
+        
+        const isValidPassword = user.validPassword(password);
+        
+        if (!isValidPassword) {
+          return res.status(401).json({ error: 'Invalid credentials' });
+        }
+        
+        res.json({
+          id: user._id,
+          email: user.email,
+          role: user.role,
+          newUser: false
+        });
 
-    } catch(err){
-        console.log(err)
+      } catch (err) {
+        console.error('Login error:', err);
+        res.status(500).json({ error: 'Server error' });
+      }
+});
 
+app.get('/getUsers', async (req, res) => {
+    try {
+        console.log('Fetching all users from database');
+        const users = await userModel.find({});
+        console.log(`Found ${users.length} users`);
+        res.json(users);
+    } catch (err) {
+        console.error('Error fetching users:', err);
+        res.status(500).json({ error: 'Failed to fetch users' });
     }
-
-})
+});
 
 app.get('/getTickets', async (req, res) =>{
-       ticketModel.find()
-       .then(tickets => res.json(tickets)) 
-       .catch(err => res.json(err))
+    ticketModel.find()
+    .then(tickets => res.json(tickets)) 
+    .catch(err => res.json(err))
 });
+
+app.get('/admin', async (req, res) => {
+    const user = req.user;
+    if (user.role ===2 || user.role === 3) {
+        res.json({ isAdmin: true });
+    } else {
+        res.json({ isAdmin: false });
+    }
+});
+
+app.put('/users/:id', async (req, res) => {
+    try {
+        console.log('Update request received');
+        console.log('Route parameter:', req.params);
+        console.log('Request body:', req.body);
+        
+        const userId = req.params.id;
+        const role = parseInt(req.body.role);
+
+        console.log(`Attempting to update user ${userId} to role ${role}`);
+        const userExists = await userModel.findById(userId);
+        
+        if (!userExists) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        
+        const updatedUser = await userModel.findByIdAndUpdate(
+            userId,
+            { role: role }
+        );
+
+        console.log('User updated successfully:', updatedUser);
+        res.json(updatedUser);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to update user role' });
+    }
+}); 
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

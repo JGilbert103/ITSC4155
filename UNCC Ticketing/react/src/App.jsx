@@ -13,55 +13,73 @@ import { About } from '../components/About';
 import TicketDatabase from '../components/ticketdatabase';
 import ManageUsers from '../components/ManageUsers';
 import React from 'react';
+import { AuthProvider, useAuth } from '../src/AuthContext';
 
-const AuthContext = createContext();
+function AdminRoute({ children }) {
+  const { isAuthenticated, userRole } = useAuth();
 
-export function useAuth() {
-  return useContext(AuthContext);
+  if (!isAuthenticated || (userRole !== 2 && userRole !== 3)) {
+    return <Navigate to="/login" />;
+  }
+  return children;
+}
+
+function ProtectedRoute({ children }) {
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+  return children;
 }
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    JSON.parse(localStorage.getItem("isAuthenticated"))
-  );
-
-  useEffect(() => {
-    localStorage.setItem("isAuthenticated", JSON.stringify(isAuthenticated));
-  }, [isAuthenticated]);
-
-  const logIn = () => setIsAuthenticated(true);
-  const logOut = () => setIsAuthenticated(false);
-
-
-  const [isAdmin, setIsAdmin] = useState(
-    JSON.parse(localStorage.getItem("isAdmin"))
-  );
-
-  useEffect(() => {
-    localStorage.setItem("isAdmin", JSON.stringify(isAdmin));
-  }, [isAdmin]);
-
-  const admin = () => setIsAdmin(true);
-  const notAdmin = () => setIsAdmin(false);
-
-
-
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmin }}>
+    <AuthProvider>
       <Navbar />
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<Home />} />
-        <Route path="/adminportal" element={isAuthenticated && isAdmin ? <AdminPortal /> : <Navigate to="/login" />} />
-        <Route path="/userportal" element={isAuthenticated ? <UserPortal /> : <Navigate to="/login" />} />
-        <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/" />} />
-        <Route path="/ticket" element={<Ticket />} />
-        <Route path="/faq" element={<FAQ/>}/>
-        <Route path="/about" element={<About/>}/>
-        <Route path="/ticket-database" element={<TicketDatabase/>}/>
-        <Route path="/manage-users" element={<ManageUsers/>}/>
-
+        <Route path="/login" element={<Login />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/about" element={<About />} />
+        
+        {/* Protected routes for authenticated users */}
+        <Route path="/userportal" element={
+          <ProtectedRoute>
+            <UserPortal />
+          </ProtectedRoute>
+        } />
+        
+        <Route path="/ticket" element={
+          <ProtectedRoute>
+            <Ticket />
+          </ProtectedRoute>
+        } />
+        
+        {/* Admin-only routes */}
+        <Route path="/adminportal" element={
+          <AdminRoute>
+            <AdminPortal />
+          </AdminRoute>
+        } />
+        
+        <Route path="/ticket-database" element={
+          <AdminRoute>
+            <TicketDatabase />
+          </AdminRoute>
+        } />
+        
+        <Route path="/manage-users" element={
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        } />
+        
+        {/* Catch all - redirect to home */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </AuthContext.Provider>
+    </AuthProvider>
   )
 }
 
