@@ -169,7 +169,7 @@ function TicketDatabase() {
                                             <td>{ticket.lastname}, {ticket.firstname}</td>
                                             <td>{ticket.building}</td>
                                             <td>{getLocationType(ticket.location)}</td>
-                                            <td>{room || 'N/A'}</td>
+                                            <td>{room || ''}</td>
                                             <td>
                                                 <a href=''>
                                                     <button className='viewButton'>view</button>

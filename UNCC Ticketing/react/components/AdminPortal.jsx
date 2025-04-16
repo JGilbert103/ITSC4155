@@ -32,8 +32,8 @@ function AdminPortal() {
            
                             <tr>
                                 <th>Ticket ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
+                                <th>Name</th>
+                                <th>Building</th>
                                 <th>Problem</th>
                                 <th>Status</th>
                                 <th>Date Submitted</th>
@@ -45,12 +45,15 @@ function AdminPortal() {
                             tickets.map(ticket => {
                                 return <tr>
                                     <td>N/A</td>
-                                    <td>{ticket.firstname}</td> 
-                                    <td>{ticket.lastname}</td> 
-                                    <td>{ticket.problem}</td> 
+                                    <td>{ticket.lastname}, {ticket.firstname}</td> 
+                                    <td>{ticket.building}</td> 
+                                    <td>{ticket.problem.substring(0,50)}</td> 
+                                    <td>
+                                        N/A 
+                                        {/* Add ticket status to ticket submission and be able to change it */}
+                                    </td>
                                     <td>N/A</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
+                                    <td><button className='viewTicket'>view</button></td>
                                    
                                 </tr>
                                         

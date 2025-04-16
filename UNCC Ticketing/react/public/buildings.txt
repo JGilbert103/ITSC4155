@@ -1,7 +1,7 @@
 Athletic Training & Academic Center
 Atkins Library
 Barnard
-Barnhardt Student Activity Center/Halton Arena
+Barnhardt Student Activity Center
 Belk Gymnasium
 Bioinformatic Building
 Bonnie E. Cone Center
@@ -26,7 +26,7 @@ McEniry
 McMillan Greenhouse
 Mebane Hall
 Memorial Hall
-Partnership Outreach Research to Accelerate Learning
+PORTAL
 Robinson Hall
 Rowe
 Smith
@@ -34,7 +34,6 @@ Storrs
 Student Health Center
 Student Union
 The building that shall not be named
-University Recreation Center
 University Recreation Center
 Winningham
 Witherspoon

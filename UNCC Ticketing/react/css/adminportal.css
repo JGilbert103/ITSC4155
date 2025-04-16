@@ -26,8 +26,8 @@
   display: flex;
   flex-direction: column;
   background-color: #A49665;
-  align-content: center;
-  justify-content: center;
+  align-content: start;
+  justify-content: start;
   gap: 20px;
   border-radius: 10px;
   padding: 2%;
@@ -63,15 +63,23 @@
 .admin-tickets-table {
   width: 90%;
   border-collapse: collapse;
+
 }
 .admin-tickets-table th, .admin-tickets-table td {
   padding: 10px;
   border-bottom: 1px solid #ccc;
   text-align: left;
+  border: grey solid 1px;
+  border-top: black solid 2px; 
 }
 .admin-tickets-table th {
   background-color: #A49665;
   color: white;
+}
+
+.admin-tickets-table tr:nth-child(even)
+{
+  background-color: lightgray;
 }
 .view-btn {
   padding: 5px 10px;
@@ -80,4 +88,12 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
+}
+.viewTicket{
+  background: rgb(161, 161, 161);
+  color: black
+}
+.viewTicket:hover
+{
+  background: rgb(83, 83, 83);
 }
