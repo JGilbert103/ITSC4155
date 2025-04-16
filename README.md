@@ -1,10 +1,10 @@
 ## Niner Maintenance is a web-based application designed to streamline maintenance request submissions and tracking for students, staff and technicians on UNCC campus.
 
 **The system allows users to:**
-  1. Submit maintenance requests with details such as descriptions, photos and locations.
+  1. Submit maintenance requests with details such as descriptions and locations.
   2. Track the status of their requests (e.g., Open, In Progress, Resolved, Closed).
   3. Authenticate using their UNCC credentials to ensure secure acccess.
-  4. Provide technicians with a clear view of assigned work orders for efficient resolution.
+  4. Provide admins/technicians with a clear view of assigned work orders for efficient resolution.
 
 The goal of this project is to create an organized, user-friendly, and efficient system for handling maintenance requests, contributing to a safer and more functional campus environment.
 
@@ -13,7 +13,6 @@ Follow these steps to set up the development environment for Niner Maintenance:
   1. *Prerequisites*
      - Java: Install the latest JDK from [Oracle](https://www.oracle.com/java/technologies/downloads/?er=221886)
      - Node: Install Node.js from [nodejs.org](https://nodejs.org/en)
-     - MySQL: Download and install MySQL from [dev.mysql.com](https://nodejs.org/en)
      - Git: Install Git from [git-scm.com](https://git-scm.com/downloads)
 
   2. *Clone the Repository*
@@ -23,18 +22,19 @@ Follow these steps to set up the development environment for Niner Maintenance:
      - Install dependencies
        `cd UNCC Ticketing\react`
        `npm install`
+       `cd UNCC Ticketing\react\mongodb`
+       `npm install`
+     - Connect to database and start Express server
+      `cd UNCC Ticketing\react\mongodb`
+      `node server.js`
      - Start server    
-       `npm run dev`
-     - Setup Database/Unit Testing
-       `npm install mysql` & `npm install mysql2`
-       `npm install jest`
+       `npm run dev`      
 
 ### Usage Details
 **For Users**
   1. Login: Authenticate using your UNCC credentials
   2. Submit a ticket:
      - Fill out the form with necessary details
-     - Attach a photo if necessary
   3. Track your ticket
      - View the status of your submitted ticket
      
@@ -45,6 +45,8 @@ Follow these steps to set up the development environment for Niner Maintenance:
      - Change the status of tickets as you work on them
   3. Monitor system activity:
      - View all submitted tickets and their current statuses
+  4. Manage users:
+     - View and manage all users with registered account
     
 ### Team Progress
 **Sprint 0** - Environment Setup
@@ -63,4 +65,13 @@ Follow these steps to set up the development environment for Niner Maintenance:
   - Enhancements of About/Home/FAQ page
   - Error prevention for ticket submissions and login page
   - Further functionality implemented for Admin and User portal pages
+  - Switched from MySQL to MongoDB
+  - Started using Express API endpoints
+  - Wrote first couple unit tests
+
+**Sprint 3** - Final Touches and Further Enhancements
+  - Finalize frontend design and styling
+  - Implement more unit tests
+  - Ensure all functionalities in the project scope are implemented 
+  - Create user database and connect users to specific tickets for tracking and notifications
 
