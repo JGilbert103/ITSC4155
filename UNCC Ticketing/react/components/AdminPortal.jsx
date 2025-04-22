@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../css/adminportal.css';
-import axios from 'axios'
+import axios from 'axios';
+
+const extractRoomFromLocation = (loc) => {
+    const match = loc?.match(/\b(?:Classroom|Dorm)\s+(.+)/i);
+    return match ? match[1] : '';
+};
+const stripRoomFromLocation = (loc) => {
+    if (!loc) return '';
+    const match = loc.match(/^(Classroom|Dorm)\s+/i);
+    return match ? match[1] : loc;
+};
+
 
 function AdminPortal() {
-    const [tickets, setTickets] = useState([])
+    const [tickets, setTickets] = useState([]);
+    const [selectedTicket, setSelectedTicket] = useState(null);
+
     useEffect(() => {
         axios.get('http://localhost:3001/getTickets')
-        .then(tickets => setTickets(tickets.data))
-        .catch(err => console.log(err))
-    }, [])
+            .then(response => setTickets(response.data))
+            .catch(err => console.log(err));
+    }, []);
+
     return (
         <div className='admin-portal-container'>
             <div className='title'>
@@ -23,13 +37,13 @@ function AdminPortal() {
                     <a href='manage-users'>
                         <button className='manage-users-btn'>Manage Users</button>
                     </a>
-                    <a href='admin-settings'>
+                    {/* <a href='admin-settings'>
                         <button className='settings-btn'>Admin Settings</button>
-                    </a>
+                    </a> */}
                 </div>
                 <div className='right-panel'>
                     <table className='admin-tickets-table'>
-           
+                        <thead>
                             <tr>
                                 <th>Ticket ID</th>
                                 <th>Name</th>
@@ -39,34 +53,42 @@ function AdminPortal() {
                                 <th>Date Submitted</th>
                                 <th>Actions</th>
                             </tr>
-                
+                        </thead>
                         <tbody>
-                        {
-                            tickets.map(ticket => {
-                                return <tr>
+                            {tickets.map((ticket, index) => (
+                                <tr key={ticket._id.$oid || index}>
+                                    <td>{ticket._id?.$oid || 'N/A'}</td>
+                                    <td>{ticket.lastname}, {ticket.firstname}</td>
+                                    <td>{ticket.building.trim()}</td>
+                                    <td>{ticket.problem?.substring(0, 50)}</td>
                                     <td>N/A</td>
-                                    <td>{ticket.lastname}, {ticket.firstname}</td> 
-                                    <td>{ticket.building}</td> 
-                                    <td>{ticket.problem.substring(0,50)}</td> 
+                                    <td>N/A</td>
                                     <td>
-                                        N/A 
-                                        {/* Add ticket status to ticket submission and be able to change it */}
+                                        <button className="view-btn" onClick={() => setSelectedTicket(ticket)}>View</button>
                                     </td>
-                                    <td>N/A</td>
-                                    <td><button className='viewTicket'>view</button></td>
-                                   
                                 </tr>
-                                        
-                                    })
-                                }
-                            <tr>
-                
-                            </tr>
-                            <tr>
-                                
-                            </tr>
+                            ))}
                         </tbody>
                     </table>
+
+                    {selectedTicket && (
+                        <div className="custom-overlay" onClick={() => setSelectedTicket(null)}>
+                            <div className="custom-popup" onClick={(e) => e.stopPropagation()}>
+                                <h2>Ticket Number: {selectedTicket._id?.$oid || 'N/A'}</h2>
+                                <button className="custom-close-btn" onClick={() => setSelectedTicket(null)}>×</button>
+                                <div className="custom-content">
+                                    <p><strong>Name:</strong> {selectedTicket.firstname} {selectedTicket.lastname}</p>
+                                    <p><strong>Building:</strong> {selectedTicket.building.trim()}</p>
+                                    <p><strong>Location:</strong> {stripRoomFromLocation(selectedTicket.location)}</p>
+                                        {(selectedTicket.roomnumber || extractRoomFromLocation(selectedTicket.location)) && (
+                                            <p><strong>Room:</strong> {selectedTicket.roomnumber || extractRoomFromLocation(selectedTicket.location)}</p>
+                                        )}
+                                    <p><strong>Problem:</strong> {selectedTicket.problem}</p>
+                                    <p><strong>Status:</strong> OPEN</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

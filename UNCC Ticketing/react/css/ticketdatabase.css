@@ -122,3 +122,46 @@
   overflow: auto;
 
 }
+
+.overlay {
+  position: fixed;
+  top: 10%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  visibility: visible;
+  opacity: 1;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup {
+  background: lightgray;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+  max-height: 80%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.popup h2 {
+  margin-top: 0;
+}
+
+.popup .close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.popup .content p {
+  margin: 10px 0;
+}
+

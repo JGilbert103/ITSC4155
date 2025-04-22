@@ -77,13 +77,26 @@ function ManageUsers() {
 
     return (
         <div className='usersContainer'>
-            <h2>Manage Users</h2>
+            <div className='UsersbackButton'>
+                <button><a href='/adminportal'>Back</a></button>
+            </div>
+            <div className='ManageUserText'>
+                <h2>Manage Users</h2>
+            </div>
             
-            {/* status messages */}
-            {error && <div className="error-message">{error}</div>}
-            {successMessage && <div className="success-message">{successMessage}</div>}
-            
-            {loading && <div className="loading-indicator">Loading...</div>}
+            <div className='status-container'>
+                {error && <div className="error-message">{error}</div>}
+                {successMessage && <div className="success-message">{successMessage}</div>}
+                {loading && <div className="loading-indicator">Loading...</div>}
+                
+                <button 
+                    onClick={fetchUsers} 
+                    disabled={loading}
+                    className="refresh-button"
+                >
+                    {loading ? 'Loading...' : 'Refresh User List'}
+                </button>
+            </div>
             
             {users.length === 0 && !loading ? (
                 <p>No users found in the database.</p>
@@ -118,14 +131,6 @@ function ManageUsers() {
                     </tbody>
                 </table>
             )}
-            
-            <button 
-                onClick={fetchUsers} 
-                disabled={loading}
-                className="refresh-button"
-            >
-                {loading ? 'Loading...' : 'Refresh User List'}
-            </button>
         </div>
     );
 }

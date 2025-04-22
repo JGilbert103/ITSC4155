@@ -87,3 +87,19 @@
 {
   background: rgb(83, 83, 83);
 }
+.view-btn {
+  padding: 8px 12px;
+  background-color: #005035;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+
+.view-btn:hover {
+  background-color: #003823;
+}

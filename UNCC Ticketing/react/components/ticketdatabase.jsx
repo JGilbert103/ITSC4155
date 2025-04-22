@@ -3,6 +3,16 @@ import { NavLink } from 'react-router-dom';
 import '../css/ticketdatabase.css';
 import axios from 'axios';
 
+const extractRoomFromLocation = (loc) => {
+    const match = loc?.match(/\b(?:Classroom|Dorm)\s+(.+)/i);
+    return match ? match[1] : '';
+};
+const stripRoomFromLocation = (loc) => {
+    if (!loc) return '';
+    const match = loc.match(/^(Classroom|Dorm)\s+/i);
+    return match ? match[1] : loc;
+};
+
 function TicketDatabase() {
     const [buildingname, setBuildingname] = useState([]);
     const [place, setPlace] = useState([]);
@@ -12,7 +22,7 @@ function TicketDatabase() {
     const [location, setLocation] = useState('All');
     const [roomNumber, setRoomNumber] = useState('');
     const [searchText, setSearchText] = useState('');
-
+    const [selectedTicket, setSelectedTicket] = useState(null);
 
     useEffect(() => {
         axios.get('http://localhost:3001/getTickets')
@@ -20,13 +30,11 @@ function TicketDatabase() {
             .catch(err => console.log(err));
     }, []);
 
-
     useEffect(() => {
         fetch("/buildings.txt")
             .then(response => response.text())
             .then(text => setBuildingname(text.split("\n")));
     }, []);
-
 
     useEffect(() => {
         fetch("/locations.txt")
@@ -39,8 +47,7 @@ function TicketDatabase() {
                 setPlace(cleaned);
             });
     }, []);
-    
-    
+
     const extractRoomFromLocation = (loc) => {
         const match = loc?.match(/\b(?:Classroom|Dorm)\s+(.+)/i);
         return match ? match[1] : '';
@@ -171,9 +178,12 @@ function TicketDatabase() {
                                             <td>{getLocationType(ticket.location)}</td>
                                             <td>{room || ''}</td>
                                             <td>
-                                                <a href=''>
-                                                    <button className='viewButton'>view</button>
-                                                </a>
+                                                <button
+                                                    className='viewButton'
+                                                    onClick={() => setSelectedTicket(ticket)}
+                                                >
+                                                    View
+                                                </button>
                                             </td>
                                         </tr>
                                     );
@@ -187,6 +197,25 @@ function TicketDatabase() {
                     </table>
                 </div>
             </div>
+
+            {selectedTicket && (
+                <div className="overlay" onClick={() => setSelectedTicket(null)}>
+                    <div className="popup" onClick={(e) => e.stopPropagation()}>
+                        <h2>Ticket Number: {selectedTicket._id?.$oid || 'N/A'}</h2>
+                        <a className="close" onClick={() => setSelectedTicket(null)}>&times;</a>
+                        <div className="content">
+                            <p><strong>Name:</strong> {selectedTicket.firstname} {selectedTicket.lastname}</p>
+                            <p><strong>Building:</strong> {selectedTicket.building}</p>
+                            <p><strong>Location:</strong> {stripRoomFromLocation(selectedTicket.location)}</p>
+                            {(selectedTicket.roomnumber || extractRoomFromLocation(selectedTicket.location)) && (
+                                <p><strong>Room:</strong> {selectedTicket.roomnumber || extractRoomFromLocation(selectedTicket.location)}</p>
+                            )}
+                            <p><strong>Problem:</strong> {selectedTicket.problem}</p>
+                            <p><strong>Status:</strong> {selectedTicket.updates ? 'Updated' : 'Pending'}</p>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

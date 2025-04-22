@@ -82,12 +82,20 @@
   background-color: lightgray;
 }
 .view-btn {
-  padding: 5px 10px;
+  padding: 8px 12px;
   background-color: #005035;
   color: white;
   border: none;
-  cursor: pointer;
   border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+
+.view-btn:hover {
+  background-color: #003823;
 }
 .viewTicket{
   background: rgb(161, 161, 161);
@@ -96,4 +104,96 @@
 .viewTicket:hover
 {
   background: rgb(83, 83, 83);
+}
+
+.box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  background: #06D85F;
+}
+
+.custom-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.custom-popup {
+  background-color: lightgray;
+  border-radius: 15px;
+  padding: 30px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+.custom-popup h2 {
+  margin-top: 0;
+  font-size: 24px;
+  color: #005035;
+}
+
+.custom-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.custom-close-btn:hover {
+  color: #A49665;
+}
+
+.custom-content p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

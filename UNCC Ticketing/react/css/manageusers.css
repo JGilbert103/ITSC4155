@@ -1,16 +1,101 @@
-.allUsers th, .allUsers td {
-    border: 1px solid grey;
-    padding: 1%;
+.allUsers th,
+.allUsers td {
+    border: 1px solid black;
+    padding: 8px;
     text-align: left;
     overflow: hidden;
 }
-.allUsers table {
-    width: 100%;
-    border-collapse: collapse;
+
+.allUsers tr:nth-child(even) {
+    background-color: lightgray;
 }
+
+.userTableObjects {
+    width: 90%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-left: 5%;
+}
+
+.ticketHeader {
+    background-color: #A49665;
+    color: white;
+    font-weight: bold;
+}
+
 .allUsers {
-    width: 100%;
-    border: 1px solid lightgrey;
     background-color: #fafafa;
+}
+
+.table-wrapper {
+    margin: 20px 0;
+    border: 1px solid #000000;
+    background-color: #fdfdfd;
+}
+
+.loading-indicator {
+    font-size: larger;
+    font-weight: bold;
     padding: 10px;
-  }
+    color: #333;
+}
+
+.status-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.refresh-button {
+    margin-top: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #005035;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.refresh-button:hover {
+    background-color: #003823;
+}
+
+.ManageUserText {
+    text-align: center;
+    font-size: larger;
+}
+
+.usersContainer {
+    background-color: lightgray;
+    height: 100vh;
+}
+
+.UsersbackButton
+{
+    padding-left: 3%;
+    padding-top: 1%;
+}
+
+.UsersbackButton button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.UsersbackButton button a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.UsersbackButton button:hover {
+    background-color: #ff4f3d;
+}
