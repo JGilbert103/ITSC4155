@@ -78,7 +78,7 @@ function ManageUsers() {
     return (
         <div className='usersContainer'>
             <div className='UsersbackButton'>
-                <button><a href='/adminportal'>Back</a></button>
+                <button><a href='adminportal'>Back</a></button>
             </div>
             <div className='ManageUserText'>
                 <h2>Manage Users</h2>
