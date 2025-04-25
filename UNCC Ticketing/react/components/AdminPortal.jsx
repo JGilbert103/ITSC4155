@@ -88,7 +88,7 @@ function AdminPortal() {
                     {selectedTicket && (
                         <div className="custom-overlay" onClick={() => setSelectedTicket(null)}>
                             <div className="custom-popup" onClick={(e) => e.stopPropagation()}>
-                                <h2>Ticket Number: {selectedTicket._id?.$oid || 'N/A'}</h2>
+                                <h2>Ticket Number: {selectedTicket.ticketid || 'N/A'}</h2>
                                 <button className="custom-close-btn" onClick={() => setSelectedTicket(null)}>×</button>
                                 <div className="custom-content">
                                     <p><strong>Name:</strong> {selectedTicket.firstname} {selectedTicket.lastname}</p>
