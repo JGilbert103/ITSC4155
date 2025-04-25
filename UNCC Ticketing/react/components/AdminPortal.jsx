@@ -13,10 +13,19 @@ const stripRoomFromLocation = (loc) => {
     return match ? match[1] : loc;
 };
 
+const status = {
+    1: "Open",
+    2: "In Progress",
+    3: "Done"
+}
+
+
+
 
 function AdminPortal() {
     const [tickets, setTickets] = useState([]);
     const [selectedTicket, setSelectedTicket] = useState(null);
+    const [photo, setPhoto] = useState(null)
 
     useEffect(() => {
         axios.get('http://localhost:3001/getTickets')
@@ -51,18 +60,23 @@ function AdminPortal() {
                                 <th>Problem</th>
                                 <th>Status</th>
                                 <th>Date Submitted</th>
+                                <th>Photo</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {tickets.map((ticket, index) => (
                                 <tr key={ticket._id.$oid || index}>
-                                    <td>{ticket._id?.$oid || 'N/A'}</td>
+                                    <td>{ticket.ticketid || 'N/A'}</td>
                                     <td>{ticket.lastname}, {ticket.firstname}</td>
                                     <td>{ticket.building.trim()}</td>
                                     <td>{ticket.problem?.substring(0, 50)}</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
+                                    <td>{status[ticket.status] || 'N/A'}</td>
+                                    {/*gpt*/}
+                                    <td>{ticket.createdAt ? new Date(ticket.createdAt).toISOString().split('T')[0] : 'N/A'}</td>
+                                    <td>
+                                        <button className="view-btn" onClick={() => setPhoto(ticket)}>View</button>
+                                    </td>
                                     <td>
                                         <button className="view-btn" onClick={() => setSelectedTicket(ticket)}>View</button>
                                     </td>
@@ -89,6 +103,18 @@ function AdminPortal() {
                             </div>
                         </div>
                     )}
+
+                    {photo && (
+                        <div className="custom-overlay" onClick={() => setPhoto(null)}>
+                            <div className="custom-popup" onClick={(e) => e.stopPropagation()}>
+                                <h2>Ticket Number: {photo.ticketid || 'N/A'}</h2>
+                                <button className="custom-close-btn" onClick={() => setPhoto(null)}>×</button>
+                                <div className="custom-content">
+                                  { !photo.photo ? 'No Image Found' : <img width={400} height={400} src={photo.photo}></img>}
+                                </div>
+                            </div>
+                        </div>
+                    )}  
                 </div>
             </div>
         </div>

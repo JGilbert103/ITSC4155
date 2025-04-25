@@ -172,7 +172,7 @@ function TicketDatabase() {
                                     const room = ticket.roomnumber || extractRoomFromLocation(ticket.location);
                                     return (
                                         <tr key={index}>
-                                            <td>N/A</td>
+                                            <td>{ticket.ticketid || 'N/A'}</td>
                                             <td>{ticket.lastname}, {ticket.firstname}</td>
                                             <td>{ticket.building}</td>
                                             <td>{getLocationType(ticket.location)}</td>

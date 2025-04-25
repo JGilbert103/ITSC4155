@@ -49,6 +49,7 @@ function Login() {
 
         if (response.data) {
           console.log("Login successful!", response.data);
+          localStorage.setItem('email', email)
 
           const userRole = response.data.role || 1;
 

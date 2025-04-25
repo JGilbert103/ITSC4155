@@ -29,7 +29,7 @@ function Ticket() {
     const [building, setBuilding] = useState('')
     const [location, setLocation] = useState('')
     const [updates, setUpdates] = useState(false)
-    const [image, setImage] = useState(null)
+    const [image, setImage] = useState("")
 
     const submit = (e) =>{
         e.preventDefault()
@@ -47,10 +47,12 @@ function Ticket() {
             photo: image,
         });
         
-        axios.post('http://localhost:3001/tickets', {firstname: firstname, lastname:lastname, problem: problem, building: building, location: fullLocation, updates:updates, photo:image})
+        const userEmail = localStorage.getItem('email')
+
+        axios.post('http://localhost:3001/tickets', {firstname: firstname, lastname:lastname, problem: problem, building: building, location: fullLocation, email: userEmail, updates:updates, photo:image})
         .then((data) =>{
             console.log(data)
-            console.log(firstname, lastname, problem, building, location, updates, image)
+            console.log(firstname, lastname, problem, building, location, userEmail, updates, image)
             setFirstName('')
             setLastName('')
             setProblem('')
@@ -61,6 +63,22 @@ function Ticket() {
         })
             
     }
+
+    //yt
+    const imageUpload = (e) =>{
+        console.log(e)
+        const reader = new FileReader()
+        reader.readAsDataURL(e.target.files[0])
+        reader.onload = () =>{
+            console.log(reader.result)
+            setImage(reader.result) 
+        }
+        reader.onerror = error => {
+            console.log("error: ", error)
+        }
+
+    }
+
 
     return (
         <>
@@ -129,8 +147,9 @@ function Ticket() {
 
                         <div className="add-photo">
                             <label>Import photo of issue and location:
-                                <input type="file" name="photo" accept="image/*" onChange={(e) => setImage(e.target.files[0])}></input>
+                                <input type="file" name="photo" accept="image/*" onChange={imageUpload}></input>
                             </label>
+                            {image=="" ? "": <img width={200} height={200} src={image}></img>}
                         </div>
 
                         <div className="updates">

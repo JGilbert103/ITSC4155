@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const bodyParser = require('body-parser')
 
 const ticketModel = require('./schemas/ticket.js');
 const userModel = require('./schemas/user.js');
@@ -12,6 +13,7 @@ app.use(cors({
     origin: 'http://localhost:5173', 
     credentials: true
 }));
+app.use(bodyParser.json({limit: '1gb'}))
 
 // MongoDB Connection
 const mongoURI = 'mongodb+srv://danielleff03:9tZXrhKqsi3Mn2S8@cluster0.zekhtoy.mongodb.net/NinerMaintenance?retryWrites=true&w=majority&appName=Cluster0';
@@ -69,7 +71,7 @@ app.post('/login', async (req,res) =>{
         if (!isValidPassword) {
           return res.status(401).json({ error: 'Invalid credentials' });
         }
-        
+
         res.json({
           id: user._id,
           email: user.email,
@@ -100,6 +102,22 @@ app.get('/getTickets', async (req, res) =>{
     .then(tickets => res.json(tickets)) 
     .catch(err => res.json(err))
 });
+
+app.get('/userTickets', async (req, res) =>{
+    try{
+        const authHeader = req.headers['authorization']
+        const userEmail = authHeader.split(' ')[1]
+        console.log(userEmail);
+
+        const user = await ticketModel.find({ email: userEmail})
+        console.log("user tickets: ", user)
+        res.json(user)
+
+    } catch(err) {
+        console.log(err)
+    }
+
+})
 
 app.get('/admin', async (req, res) => {
     const user = req.user;
