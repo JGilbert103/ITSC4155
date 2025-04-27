@@ -1,41 +1,92 @@
-.homebody {
-    background-color: #A49665;
+.homeContainer {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.leftSide {
+    background-color: #ECEADA;
+    width: 50%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    min-height: 100vh;  
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 40px;
 }
 
+.topWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 75px;
+    margin-left: 80px; 
+}
 
+.textSection {
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+}
 
-.welcome
-{
+.welcomeText {
     color: #005035;
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 60px;
+    line-height: 1.1;
+    text-align: left;
+}
+
+.verticalLine {
+    width: 2px;
+    background-color: #005035;
+    height: 310px;
+    margin-left: 30px;
+}
+
+.sloganText {
+    color: #005035;
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
     font-weight: 700;
-    padding-top: 2%;
-    width: 70%;
-    text-align: center;
-    font-family: "Playfair", monospace;
-    margin-bottom: 10px;
+    position: absolute;
+    left: 45%;
+    top: 230px;
 }
 
-.homeLogin, .homePortal {
-    padding: 10px 20px;
-    margin-top: 10px;
-    font-size: 16px;
-}
-
-
-.homeGif {
-    width: 400px;
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-.buttons {
+.bottomWrapper {
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
+}
+
+.mascotLink {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.mascotLink:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.mascotImage {
+    width: 400px;
+    height: auto;
+}
+
+.rightSide {
+    width: 50%;
+    height: 100%;
+}
+
+.backgroundImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
 }

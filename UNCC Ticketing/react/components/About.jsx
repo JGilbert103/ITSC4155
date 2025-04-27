@@ -24,7 +24,7 @@ export const About = () => {
                 </div>
                 <div className="gold-divider"></div>
                 <div className="id-body">
-                  <p className="id-name">James Gilbert</p>
+                  <p className="id-name">Jake Gilbert</p>
                   <p className="id-year">Senior</p>
                   <p className="id-label">ID#: 801317781</p>
                   <p className="id-label">Exp: 05/9/2025</p>
@@ -65,9 +65,9 @@ export const About = () => {
                 </div>
                 <div className="gold-divider"></div>
                 <div className="id-body">
-                  <p className="id-name">Mico Masangkay</p>
+                  <p className="id-name">Mico Masangkay (Front End)</p>
                   <p className="id-year">Senior</p>
-                  <p className="id-label">ID#: 102938123</p>
+                  <p className="id-label">ID#: 801185563</p>
                   <p className="id-label">Exp 05/29/2025</p>
                 </div>
               </div>

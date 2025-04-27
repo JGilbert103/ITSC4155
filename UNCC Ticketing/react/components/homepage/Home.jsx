@@ -1,31 +1,40 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import '../../css/home.css';
-import WelcomeNorm from "../../src/assets/WelcomePageNorm.gif";
+import WelcomeNorm from "../../src/assets/WelcomePageNorm.gif"; 
+import BellTower from "../../src/assets/UNCC_Bell_Tower.jpeg";
 
-function Home (){
+function Home() {
+    return (
+        <div className="homeContainer">
+            <div className="leftSide">
+                <div className="topWrapper">
+                    <div className="textSection">
+                        <div className="welcomeText">
+                            Welcome to <br />
+                            Niner <br />
+                            Maintenance!
+                        </div>
 
-    const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
-    return(
-        <div className='homebody'>
-            <div className='welcome'>
-                <h1>Welcome to Niner Maintenance!</h1>
-                <p>- Your one-stop solution for maintenance requests and support! -</p>
+                        <div className="verticalLine"></div>
+
+                        <div className="sloganText">
+                            Your One-Stop <br />
+                            Solution for Maintenance <br />
+                            Request & Support
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bottomWrapper">
+                    <a href="/login" className="mascotLink">
+                        <img src={WelcomeNorm} alt="Welcome Norm" className="mascotImage" />
+                    </a>
+                </div>
             </div>
-            <img src={WelcomeNorm} alt="Welcome Norm" className="homeGif" />
-            {!isAuthenticated ? (
-                <div className='buttons'>
-                    <a href="/login">
-                    <button className='homeLogin'>Login</button>
-                    </a>
-                </div>
-            ) : (
-                <div className='buttons'>
-                    <a href="/userportal">
-                    <button className='homePortal'>Go To User Portal</button>
-                    </a>
-                </div>
-        )}
+
+            <div className="rightSide">
+                <img src={BellTower} alt="UNC Charlotte Bell Tower" className="backgroundImage" />
+            </div>
         </div>
     );
 }
