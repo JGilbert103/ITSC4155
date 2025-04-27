@@ -13,15 +13,28 @@ const stripRoomFromLocation = (loc) => {
     return match ? match[1] : loc;
 };
 
+const status = {
+    1: "Open",
+    2: "In Progress",
+    3: "Done"
+}
+
 function UserPortal() {
     const [tickets, setTickets] = useState([])
     const [selectedTicket, setSelectedTicket] = useState(null);
+    const [userPhoto, setPhoto] = useState(null);
+    const userEmail = localStorage.getItem('email')
     useEffect(() => {
-        axios.get('http://localhost:3001/getTickets')
+        axios.get('http://localhost:3001/userTickets', {
+            headers:{
+                'Authorization' : `Bearer ${userEmail}`
+            }
+        })
         .then(tickets => setTickets(tickets.data))
         .catch(err => console.log(err))
     }, [])
     
+
 
     
     return (
@@ -48,18 +61,22 @@ function UserPortal() {
                                 <th>Problem</th>
                                 <th>Status</th>
                                 <th>Date Submitted</th>
+                                <th>Photo</th>
                                 <th>Actions</th>
                             </tr>
                 
                             <tbody>
                             {tickets.map((ticket, index) => (
                                 <tr key={ticket._id.$oid || index}>
-                                    <td>{ticket._id?.$oid || 'N/A'}</td>
+                                    <td>{ticket.ticketid || 'N/A'}</td>
                                     <td>{ticket.lastname}, {ticket.firstname}</td>
                                     <td>{ticket.building.trim()}</td>
                                     <td>{ticket.problem?.substring(0, 50)}</td>
-                                    <td>N/A</td>
-                                    <td>N/A</td>
+                                    <td>{status[ticket.status] || 'N/A'}</td>
+                                    <td>{ticket.createdAt ? new Date(ticket.createdAt).toISOString().split('T')[0] : 'N/A'}</td>
+                                    <td>
+                                        <button className="view-btn" onClick={() => setPhoto(ticket)}>View</button>
+                                    </td>
                                     <td>
                                         <button className="view-btn" onClick={() => setSelectedTicket(ticket)}>View</button>
                                     </td>
@@ -70,7 +87,7 @@ function UserPortal() {
                     {selectedTicket && (
                         <div className="custom-overlay" onClick={() => setSelectedTicket(null)}>
                             <div className="custom-popup" onClick={(e) => e.stopPropagation()}>
-                                <h2>Ticket Number: {selectedTicket._id?.$oid || 'N/A'}</h2>
+                                <h2>Ticket Number: {selectedTicket.ticketid || 'N/A'}</h2>
                                 <button className="custom-close-btn" onClick={() => setSelectedTicket(null)}>×</button>
                                 <div className="custom-content">
                                     <p><strong>Name:</strong> {selectedTicket.firstname} {selectedTicket.lastname}</p>
@@ -81,6 +98,18 @@ function UserPortal() {
                                         )}
                                     <p><strong>Problem:</strong> {selectedTicket.problem}</p>
                                     <p><strong>Status:</strong> OPEN</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {userPhoto && (
+                        <div className="custom-overlay" onClick={() => setPhoto(null)}>
+                            <div className="custom-popup" onClick={(e) => e.stopPropagation()}>
+                                <h2>Ticket Number: {userPhoto.ticketid || 'N/A'}</h2>
+                                <button className="custom-close-btn" onClick={() => setPhoto(null)}>×</button>
+                                <div className="custom-content">
+                                { !userPhoto.photo ? 'No Image Found' : <img width={400} height={400} src={userPhoto.photo}></img>}
                                 </div>
                             </div>
                         </div>
