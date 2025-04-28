@@ -1,14 +1,38 @@
-## Niner Maintenance is a web-based application designed to streamline maintenance request submissions and tracking for students, staff and technicians on UNCC campus.
+### Niner Maintenance
+A comprehensive maintenance request system for UNC Charlotte, enabling students and staff to submit, track and manage maintenance issues across campus.
 
+## Table of Contents
+- [Overview](#overview)
+- [Technologies Used](#technologies-used)
+- [Setup and Installation](#setup-instructions)
+- [Testing](#testing)
+- [Usage Details](#usage-details)
+- [Team Progress](#team-progress)
+
+## Overview
 **The system allows users to:**
-  1. Submit maintenance requests with details such as descriptions and locations.
+  1. Submit maintenance requests with details such as descriptions, locations and photos.
   2. Track the status of their requests (e.g., Open, In Progress, Resolved, Closed).
   3. Authenticate using their UNCC credentials to ensure secure acccess.
   4. Provide admins/technicians with a clear view of assigned work orders for efficient resolution.
 
 The goal of this project is to create an organized, user-friendly, and efficient system for handling maintenance requests, contributing to a safer and more functional campus environment.
 
-### Setup Instructions
+## Technologies Used
+**Frontend**
+- React.js
+- React Router
+- Axios
+- CSS
+
+**Backend**
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- Jest
+
+## Setup Instructions
 Follow these steps to set up the development environment for Niner Maintenance:
   1. *Prerequisites*
      - Java: Install the latest JDK from [Oracle](https://www.oracle.com/java/technologies/downloads/?er=221886)
@@ -18,19 +42,33 @@ Follow these steps to set up the development environment for Niner Maintenance:
   2. *Clone the Repository*
      `git clone https://github.com/JGilbert103/ITSC4155.git`
 
-  3. *Setup Backend*
+  3. *Setup Frontend and Backend*
      - Install dependencies
        `cd UNCC Ticketing\react`
        `npm install`
+
        `cd UNCC Ticketing\react\mongodb`
        `npm install`
+
      - Connect to database and start Express server
       `cd UNCC Ticketing\react\mongodb`
       `node server.js`
-     - Start server    
-       `npm run dev`      
+**The Express server will run on port 3001 by default**
 
-### Usage Details
+     - Start server    
+      `npm run dev`  
+**The development server will run on port 5173 by default and can be accessed at http://localhost:5173**
+
+
+
+## Testing
+  1. Install test dependencies (if not already installed)
+  `cd UNCC Ticketing\react`
+  `npm install --save-dev jest @testing-library/react @testing-library/jest-dom`
+  2. Run all tests
+  `npm run test`
+
+## Usage Details
 **For Users**
   1. Login: Authenticate using your UNCC credentials
   2. Submit a ticket:
