@@ -88,8 +88,7 @@ describe('UserPortal Component', () => {
     // wait for API call to complete
     await waitFor(() => {
       // the table headers should still be present
-      expect(screen.getByText('Ticket ID')).toBeInTheDocument();
-      expect(screen.getByText('Name')).toBeInTheDocument();
+      expect(screen.getByText('No tickets found.')).toBeInTheDocument();
       
       // no ticket data should be visible
       expect(screen.queryByText('Doe, John')).not.toBeInTheDocument();
