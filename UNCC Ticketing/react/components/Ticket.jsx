@@ -117,7 +117,10 @@ function Ticket() {
                             <div className="location-select">
                                 {place.map((name, i) =>(
                                     <label key={i} >{name}
-                                        <input value={name.trim().replace(':', '')} id={name} type="radio" name="location" onChange={(e) => setLocation(e.target.value)}required></input>
+                                        <input value={name.trim().replace(':', '')} 
+                                            id={name} type="radio" name="location" 
+                                            onChange={(e) => setLocation(e.target.value)}required>
+                                        </input>
                                     </label>
                                 ))}
                             
