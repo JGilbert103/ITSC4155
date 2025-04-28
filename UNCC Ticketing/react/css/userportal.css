@@ -15,6 +15,7 @@
   padding: 2%;
   border-radius: 10px;
   width: 90%;
+  box-shadow: 5px 5px 5px;
 }
 
 .user-portal-content {

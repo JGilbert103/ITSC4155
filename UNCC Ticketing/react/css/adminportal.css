@@ -14,6 +14,7 @@
   padding: 2%;
   border-radius: 10px;
   width: 90%;
+  box-shadow: 5px 5px 5px;
 }
 .portal-content {
   display: flex;
@@ -40,6 +41,7 @@
 }
 .left-panel a:hover button{
   background-color: #003823;
+  color: #A49665;
 }
 .left-panel a button
 {

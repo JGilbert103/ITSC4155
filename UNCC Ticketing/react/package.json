@@ -29,6 +29,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.2.0",
     "svg-loader": "^0.0.2",
+    "testing-library": "^0.0.2",
     "uncc-ticketing": "file:"
   },
   "devDependencies": {
