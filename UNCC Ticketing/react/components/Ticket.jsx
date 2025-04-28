@@ -132,7 +132,7 @@ function Ticket() {
                             <label>Room Number:
                                 <br />
                                 <input
-                                    type="text"
+                                    type="number"
                                     value={roomNumber}
                                     onChange={(e) => setRoomNumber(e.target.value)}
                                     required

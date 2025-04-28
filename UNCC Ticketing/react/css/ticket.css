@@ -102,12 +102,17 @@
     background-color: #f1f1f1;
 }
 
-
-
+/* w3schools */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
 .room-number {
     width: 50%;
     margin-top: 10px;
+  
 }
 .room-number input {
     width: 10%;
