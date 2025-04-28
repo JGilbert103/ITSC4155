@@ -21,7 +21,6 @@ mongoose.connect(mongoURI, {})
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error('MongoDB connection error:', err));
 
-
 // Routes
 app.post('/tickets', async (req, res) => {
     try {
@@ -35,7 +34,6 @@ app.post('/tickets', async (req, res) => {
 
 app.post('/register', async (req, res) => {
     var newUser = new userModel(req.body);
-
     newUser.password = newUser.generateHash(req.body.password);
     newUser.save();
 });
@@ -51,9 +49,7 @@ app.post('/login', async (req,res) =>{
                 email: email,
                 role: 1 
             });
-            
             newUser.password = newUser.generateHash(password);
-            
             user = await newUser.save();
             
             console.log("New user created:", email);
@@ -97,31 +93,33 @@ app.get('/getUsers', async (req, res) => {
     }
 });
 
-app.get('/getTickets', async (req, res) =>{
-    ticketModel.find()
-    .then(tickets => res.json(tickets)) 
-    .catch(err => res.json(err))
+app.get('/getTickets', async (req, res) => {
+    try {
+        const tickets = await ticketModel.find();
+        res.json(tickets);
+    } catch (err) {
+        console.error('Error fetching tickets:', err);
+        res.status(500).json({ error: 'Failed to fetch tickets' });
+    }
 });
 
-app.get('/userTickets', async (req, res) =>{
-    try{
-        const authHeader = req.headers['authorization']
-        const userEmail = authHeader.split(' ')[1]
+app.get('/userTickets', async (req, res) => {
+    try {
+        const authHeader = req.headers['authorization'];
+        const userEmail = authHeader.split(' ')[1];
         console.log(userEmail);
-
-        const user = await ticketModel.find({ email: userEmail})
-        console.log("user tickets: ", user)
-        res.json(user)
-
-    } catch(err) {
-        console.log(err)
+        const userTickets = await ticketModel.find({ email: userEmail });
+        console.log("User tickets: ", userTickets);
+        res.json(userTickets);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: 'Failed to fetch user tickets' });
     }
-
-})
+});
 
 app.get('/admin', async (req, res) => {
     const user = req.user;
-    if (user.role ===2 || user.role === 3) {
+    if (user.role === 2 || user.role === 3) {
         res.json({ isAdmin: true });
     } else {
         res.json({ isAdmin: false });
@@ -157,7 +155,35 @@ app.put('/users/:id', async (req, res) => {
     }
 }); 
 
+app.post('/updateTicketStatus', async (req, res) => {
+    try {
+        const { ticketid, status } = req.body;
+
+        if (!ticketid || typeof status !== 'number') {
+            return res.status(400).json({ error: 'Missing or invalid ticket ID or status' });
+        }
+
+        const updatedTicket = await ticketModel.findOneAndUpdate(
+            { ticketid: ticketid },  
+            { status: status },
+            { new: true }
+        );
+
+        if (!updatedTicket) {
+            return res.status(404).json({ error: 'Ticket not found' });
+        }
+
+        res.json({ message: 'Ticket status updated successfully', ticket: updatedTicket });
+    } catch (err) {
+        console.error('Error updating ticket status:', err);
+        res.status(500).json({ error: 'Server error updating ticket status' });
+    }
+});
+
+
+
+// Start Server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
-})
+});

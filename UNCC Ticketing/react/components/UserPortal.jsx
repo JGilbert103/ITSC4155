@@ -61,7 +61,6 @@ function UserPortal() {
                                     <th>Problem</th>
                                     <th>Status</th>
                                     <th>Date Submitted</th>
-                                    <th>Photo</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -74,9 +73,6 @@ function UserPortal() {
                                         <td>{ticket.problem?.substring(0, 50)}</td>
                                         <td>{status[ticket.status] || 'N/A'}</td>
                                         <td>{ticket.createdAt ? new Date(ticket.createdAt).toISOString().split('T')[0] : 'N/A'}</td>
-                                        <td>
-                                            <button className="view-btn" onClick={() => setPhoto(ticket)}>View</button>
-                                        </td>
                                         <td>
                                             <button className="view-btn" onClick={() => setSelectedTicket(ticket)}>View</button>
                                         </td>
@@ -91,11 +87,11 @@ function UserPortal() {
                     )}
 
                     {selectedTicket && (
-                        <div className="custom-overlay" onClick={() => setSelectedTicket(null)}>
-                            <div className="custom-popup" onClick={(e) => e.stopPropagation()}>
-                                <h2>Ticket Number: {selectedTicket.ticketid || 'N/A'}</h2>
-                                <button className="custom-close-btn" onClick={() => setSelectedTicket(null)}>×</button>
-                                <div className="custom-content">
+                                <div className="custom-overlay" onClick={() => setSelectedTicket(null)}>
+                                <div className="custom-popup" onClick={(e) => e.stopPropagation()}>
+                                    <button className="custom-close-btn" onClick={() => setSelectedTicket(null)}>×</button>
+                                    <h2>Ticket #{selectedTicket.ticketid || 'N/A'}</h2>
+                                    <div className="custom-content">
                                     <p><strong>Name:</strong> {selectedTicket.firstname} {selectedTicket.lastname}</p>
                                     <p><strong>Building:</strong> {selectedTicket.building.trim()}</p>
                                     <p><strong>Location:</strong> {stripRoomFromLocation(selectedTicket.location)}</p>
@@ -104,10 +100,18 @@ function UserPortal() {
                                     )}
                                     <p><strong>Problem:</strong> {selectedTicket.problem}</p>
                                     <p><strong>Status:</strong> {status[selectedTicket.status] || 'N/A'}</p>
+                                    <p><strong>Date Submitted:</strong> {selectedTicket.createdAt ? new Date(selectedTicket.createdAt).toLocaleDateString() : 'N/A'}</p>
+                                    <div className="ticket-photo">
+                                        {!selectedTicket.photo ? (
+                                        <p>No Image Found</p>
+                                        ) : (
+                                        <img src={selectedTicket.photo} alt="Ticket Issue" />
+                                        )}
+                                    </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    )}
+                                </div>
+                            )}
 
                     {userPhoto && (
                         <div className="custom-overlay" onClick={() => setPhoto(null)}>
