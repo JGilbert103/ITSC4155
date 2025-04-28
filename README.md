@@ -1,4 +1,4 @@
-### Niner Maintenance
+# Niner Maintenance
 A comprehensive maintenance request system for UNC Charlotte, enabling students and staff to submit, track and manage maintenance issues across campus.
 
 ## Table of Contents
