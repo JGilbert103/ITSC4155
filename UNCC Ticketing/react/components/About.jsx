@@ -3,6 +3,7 @@ import '../css/about.css';
 import CharlotteLogo from "../src/assets/UNC_Charlotte_Primary_Horiz_Logo.png";
 import MicoHeadshot from "../src/assets/Mico_Headshot.png";
 import TessHeadshot from "../src/assets/Tess_Headshot.jpg";
+import JakeHeadshot from "../src/assets/Jake_Headshot.png";
 
 
 
@@ -21,6 +22,7 @@ export const About = () => {
               <div className="id-card">
                 <div className="id-header">
                 <img src={CharlotteLogo} alt="Charlotte Logo" className="logo" />
+                <img src={JakeHeadshot} alt="Jake Headshot" className="jHeadshot" />
                 </div>
                 <div className="gold-divider"></div>
                 <div className="id-body">

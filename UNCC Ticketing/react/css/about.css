@@ -1,9 +1,10 @@
 .image {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
 }
+
 
 .img-aboutus {
   width: 100%;
@@ -141,5 +142,12 @@
   width: 80px;
   object-fit: contain;
   border-radius: 10%;
+  margin-left: auto;
+}
+
+.jHeadshot {
+  height: 100px;
+  width: 80px;
+  object-fit: contain;
   margin-left: auto;
 }
