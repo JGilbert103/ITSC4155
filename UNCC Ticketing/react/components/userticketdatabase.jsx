@@ -1,25 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import '../css/ticketdatabase.css';
+import '../css/userticketdatabase.css';
 import axios from 'axios';
-  
-  const stripRoomFromLocation = (loc) => {
+
+const extractRoomFromLocation = (loc) => {
+    const match = loc?.match(/\b(?:Classroom|Dorm)\s+(.+)/i);
+    return match ? match[1] : '';
+};
+const stripRoomFromLocation = (loc) => {
     if (!loc) return '';
     const match = loc.match(/^(Classroom|Dorm)\s+/i);
     return match ? match[1] : loc;
-  };
-  
-  // Status mapping
-  const status = {
-    1: "Open",
-    2: "In Progress",
-    3: "Closed"
-  };
-
-
+};
 
 function TicketDatabase() {
-
     const [buildingname, setBuildingname] = useState([]);
     const [place, setPlace] = useState([]);
     const [tickets, setTickets] = useState([]);
@@ -29,54 +23,25 @@ function TicketDatabase() {
     const [roomNumber, setRoomNumber] = useState('');
     const [searchText, setSearchText] = useState('');
     const [selectedTicket, setSelectedTicket] = useState(null);
-    const [editedStatus, setEditedStatus] = useState(null);
 
-    const handleStatusChange = (e) => {
-      const newStatus = parseInt(e.target.value, 10);
-      setEditedStatus(newStatus);
-    };
-    
-    const handleSaveChanges = async () => {
-      if (!selectedTicket || editedStatus === null) return;
-    
-      try {
-        await axios.post('http://localhost:3001/updateTicketStatus', {
-          ticketid: selectedTicket.ticketid,
-          status: editedStatus
-        }, { withCredentials: true });
-    
-        console.log('Status updated successfully!');
-    
-        setTickets(prevTickets =>
-          prevTickets.map(ticket =>
-            ticket.ticketid === selectedTicket.ticketid
-              ? { ...ticket, status: editedStatus }
-              : ticket
-          )
-        );
-    
-        setSelectedTicket(prev => ({
-          ...prev,
-          status: editedStatus
-        }));
-    
-        setEditedStatus(null);
-      } catch (err) {
-        console.error('Error updating ticket status:', err);
-      }
-    };
-    
-    const handleClosePopup = () => {
-      setSelectedTicket(null);
-      setEditedStatus(null);
-    };
-    
-    
     useEffect(() => {
         axios.get('http://localhost:3001/getTickets')
             .then(res => setTickets(res.data))
             .catch(err => console.log(err));
     }, []);
+
+    useEffect(() => {
+        const userEmail = localStorage.getItem('email');
+    
+        axios.get('http://localhost:3001/getTickets')
+            .then(res => {
+                const allTickets = res.data;
+                const userTickets = allTickets.filter(ticket => ticket.email === userEmail);
+                setTickets(userTickets);
+            })
+            .catch(err => console.log(err));
+    }, []);
+    
 
     useEffect(() => {
         fetch("/buildings.txt")
@@ -130,7 +95,7 @@ function TicketDatabase() {
                 <div className='filtersMain'>
                     <ul className='filters'>
                         <li className='buttonObject'>
-                            <a href='adminportal'>
+                            <a href='userportal'>
                                 <button className='backButton'>&lt;- Back</button>
                             </a>
                         </li>

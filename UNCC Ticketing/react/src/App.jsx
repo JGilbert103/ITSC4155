@@ -11,6 +11,7 @@ import AdminPortal from '../components/AdminPortal';
 import { FAQ } from '../components/FAQ';
 import { About } from '../components/About';
 import TicketDatabase from '../components/ticketdatabase';
+import UserTicketDatabase from '../components/userticketdatabase';
 import ManageUsers from '../components/ManageUsers';
 import React from 'react';
 import { AuthProvider, useAuth } from '../src/AuthContext';
@@ -48,6 +49,12 @@ function App() {
         <Route path="/userportal" element={
           <ProtectedRoute>
             <UserPortal />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/userticketdatabase" element={
+          <ProtectedRoute>
+            <UserTicketDatabase />
           </ProtectedRoute>
         } />
         

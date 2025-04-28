@@ -17,7 +17,7 @@ const stripRoomFromLocation = (loc) => {
 const status = {
     1: "Open",
     2: "In Progress",
-    3: "Done"
+    3: "Closed"
 };
 
 function UserPortal() {
@@ -46,7 +46,7 @@ function UserPortal() {
                     <a className='user-portal-open-ticket-btn' href="/ticket">
                         <button className='user-portal-open-ticket-btn'>Submit a New Ticket</button>
                     </a>
-                    <a className='user-portal-open-database-btn' href="/ticket-database">
+                    <a className='user-portal-open-database-btn' href="/UserTicketDatabase">
                         <button className='user-portal-open-ticket-btn'>Open Ticket Database</button>
                     </a>
                 </div>
