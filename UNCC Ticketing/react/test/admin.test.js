@@ -4,8 +4,13 @@ import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import AdminPortal from '../components/AdminPortal';
+import { useAuth } from '../src/AuthContext';
 
 jest.mock('axios');
+
+jest.mock('../src/AuthContext', () => ({
+  useAuth: jest.fn()
+}));
 
 describe('AdminPortal Component', () => {
   const mockTickets = [
@@ -36,6 +41,13 @@ describe('AdminPortal Component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     
+    useAuth.mockReturnValue({
+      userRole: 2, 
+      isAdmin: true,
+      isAuthenticated: true,
+      userEmail: 'admin@uncc.edu'
+    });
+
     // mock successful API response
     axios.get.mockResolvedValueOnce({ data: mockTickets });
   });
